@@ -16,20 +16,20 @@ export function App() {
       <h1 className="mb-8 text-3xl font-semibold tracking-tight">Button</h1>
 
       <div className="flex flex-wrap items-center gap-3">
-          <Button>Default</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="destructive">Destructive</Button>
-          <Button variant="link">Link</Button>
-          <Button disabled>Disabled</Button>
-          <Button
-            loading={loading}
-            aria-label={loading ? "Loading" : undefined}
-            onClick={handleLoading}
-          >
-            Click to load
-          </Button>
+        <Button>Default</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="destructive">Destructive</Button>
+        <Button variant="link">Link</Button>
+        <Button disabled>Disabled</Button>
+        <Button
+          loading={loading}
+          aria-label={loading ? "Loading" : undefined}
+          onClick={handleLoading}
+        >
+          Click to load
+        </Button>
       </div>
     </main>
   )

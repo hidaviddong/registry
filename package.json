@@ -4,7 +4,8 @@
     "build": "vite build",
     "dev": "vite dev",
     "preview": "vite preview",
-    "build:components": "shadcn build"
+    "build:components": "shadcn build",
+    "deploy": "npm run build:components && npx wrangler deploy"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
