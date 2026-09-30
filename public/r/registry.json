@@ -1,0 +1,33 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
+    "name": "daviddong",
+    "homepage": "https://registry.daviddong.me",
+    "items": [
+        {
+            "name": "button",
+            "type": "registry:ui",
+            "title": "Button",
+            "description": "A Button built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "class-variance-authority",
+                "cn",
+                "motion"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/button.tsx",
+                    "type": "registry:ui"
+                },
+                {
+                    "path": "components/ui/spinner.tsx",
+                    "type": "registry:ui"
+                },
+                {
+                    "path": "components/ui/spinner.css",
+                    "type": "registry:ui"
+                }
+            ]
+        }
+    ]
+}

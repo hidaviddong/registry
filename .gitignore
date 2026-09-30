@@ -1,0 +1,9 @@
+node_modules
+dist
+.data
+.nitro
+.cache
+.output
+.wrangler
+.env
+.env.local
