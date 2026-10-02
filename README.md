@@ -5,7 +5,7 @@
 ### Atoms (最小原子)
 - [x] Badge
 - [x] Button
-- [ ] Checkbox
+- [x] Checkbox
 - [x] Input
 - [ ] Kbd
 - [ ] Separator
