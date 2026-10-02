@@ -44,15 +44,7 @@ export function App() {
             />
           </div>
 
-          <div>
-            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
-              Inline
-            </label>
-            <div className="flex items-center gap-2">
-              <Input type="email" placeholder="Subscribe with email..." />
-              <Button>Subscribe</Button>
-            </div>
-          </div>
+
         </div>
       </section>
 
