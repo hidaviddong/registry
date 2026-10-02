@@ -11,6 +11,7 @@
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -26,6 +27,7 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
   --destructive: oklch(63.7% 0.237 25.331);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
