@@ -1,5 +1,6 @@
 import { useState } from "react"
 
+import { Badge } from "~/components/ui/badge.tsx"
 import { Button } from "~/components/ui/button.tsx"
 import { Input } from "~/components/ui/input.tsx"
 
@@ -14,8 +15,40 @@ export function App() {
 
   return (
     <main className="mx-auto w-full max-w-3xl space-y-14 px-6 py-16">
-      {/* Input */}
+      {/* 1. Badge */}
       <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Badge</h2>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <Badge>Default</Badge>
+          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="outline">Outline</Badge>
+          <Badge variant="warning">Warning</Badge>
+          <Badge variant="destructive">Destructive</Badge>
+        </div>
+      </section>
+
+      {/* 2. Button */}
+      <section className="space-y-6 border-t border-border pt-10">
+        <h2 className="text-2xl font-semibold tracking-tight">Button</h2>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <Button>Default</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="destructive">Destructive</Button>
+          <Button
+            loading={loading}
+            aria-label={loading ? "Loading" : undefined}
+            onClick={handleLoading}
+          >
+            Click to load
+          </Button>
+        </div>
+      </section>
+
+      {/* 3. Input */}
+      <section className="space-y-6 border-t border-border pt-10">
         <h2 className="text-2xl font-semibold tracking-tight">Input</h2>
 
         <div className="max-w-sm space-y-4">
@@ -43,27 +76,6 @@ export function App() {
               defaultValue="invalid-email@"
             />
           </div>
-
-
-        </div>
-      </section>
-
-      {/* Button */}
-      <section className="space-y-6 border-t border-border pt-10">
-        <h2 className="text-2xl font-semibold tracking-tight">Button</h2>
-
-        <div className="flex flex-wrap items-center gap-3">
-          <Button>Default</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="destructive">Destructive</Button>
-          <Button
-            loading={loading}
-            aria-label={loading ? "Loading" : undefined}
-            onClick={handleLoading}
-          >
-            Click to load
-          </Button>
         </div>
       </section>
     </main>

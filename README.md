@@ -3,19 +3,19 @@
 ## Components Roadmap (Bottom-Up)
 
 ### Atoms (最小原子)
+- [x] Badge
 - [x] Button
-- [x] Input
-- [ ] Badge
-- [ ] Switch
 - [ ] Checkbox
+- [x] Input
 - [ ] Kbd
 - [ ] Separator
+- [ ] Switch
 
 ### Molecules (复合微组件)
-- [ ] Input Group
-- [ ] Tooltip
 - [ ] Dropdown Menu
+- [ ] Input Group
 - [ ] Select
+- [ ] Tooltip
 
 ### Organisms (容器与弹窗)
 - [ ] Card
