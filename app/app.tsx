@@ -19,10 +19,7 @@ export function App() {
         <Button>Default</Button>
         <Button variant="secondary">Secondary</Button>
         <Button variant="outline">Outline</Button>
-        <Button variant="ghost">Ghost</Button>
         <Button variant="destructive">Destructive</Button>
-        <Button variant="link">Link</Button>
-        <Button disabled>Disabled</Button>
         <Button
           loading={loading}
           aria-label={loading ? "Loading" : undefined}
