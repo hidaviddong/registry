@@ -12,9 +12,8 @@
 
 ### Molecules (复合微组件)
 - [ ] Dropdown Menu
-- [ ] Input Group
 - [ ] Select
-- [ ] Tooltip
+- [x] Tooltip
 
 ### Organisms (容器与弹窗)
 - [ ] Card

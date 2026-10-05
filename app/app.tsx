@@ -6,6 +6,12 @@ import { Checkbox } from "~/components/ui/checkbox.tsx"
 import { Input } from "~/components/ui/input.tsx"
 import { Separator } from "~/components/ui/separator.tsx"
 import { Switch } from "~/components/ui/switch.tsx"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "~/components/ui/tooltip.tsx"
 
 export function App() {
   const [loading, setLoading] = useState(false)
@@ -180,6 +186,35 @@ export function App() {
             <Switch size="lg" />
           </div>
         </div>
+      </section>
+
+      <Separator />
+
+      {/* 7. Tooltip */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Tooltip</h2>
+
+        <TooltipProvider>
+          <div className="flex flex-wrap items-center gap-4">
+            <Tooltip>
+              <TooltipTrigger render={(props) => <Button variant="outline" {...props} />}>
+                Hover me
+              </TooltipTrigger>
+              <TooltipContent>
+                Add to your library
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger render={(props) => <Button variant="secondary" {...props} />}>
+                Bottom side
+              </TooltipTrigger>
+              <TooltipContent side="bottom">
+                Useful tooltip info
+              </TooltipContent>
+            </Tooltip>
+          </div>
+        </TooltipProvider>
       </section>
     </main>
   )
