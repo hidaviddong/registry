@@ -9,16 +9,24 @@
 - [x] Input
 - [x] Separator
 - [x] Switch
+- [ ] Progress
+- [ ] Skeleton
+- [ ] Slider
 
 ### Molecules 
 - [x] Dropdown Menu
 - [x] Select
 - [x] Tooltip
+- [ ] Sonner
+- [ ] Radio Group
+- [ ] Scroll Area
+- [ ] Tabs
 
 ### Organisms 
 - [ ] Card
 - [ ] Dialog
-- [ ] Sheet
+- [ ] Drawer
+- [ ] Table
 
 ## How to use
 
