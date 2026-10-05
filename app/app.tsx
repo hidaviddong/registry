@@ -4,6 +4,7 @@ import { Badge } from "~/components/ui/badge.tsx"
 import { Button } from "~/components/ui/button.tsx"
 import { Checkbox } from "~/components/ui/checkbox.tsx"
 import { Input } from "~/components/ui/input.tsx"
+import { Separator } from "~/components/ui/separator.tsx"
 import { Switch } from "~/components/ui/switch.tsx"
 
 export function App() {
@@ -16,7 +17,7 @@ export function App() {
   }
 
   return (
-    <main className="mx-auto w-full max-w-3xl space-y-14 px-6 py-16">
+    <main className="mx-auto w-full max-w-3xl space-y-12 px-6 py-16">
       {/* 1. Badge */}
       <section className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Badge</h2>
@@ -30,8 +31,10 @@ export function App() {
         </div>
       </section>
 
+      <Separator />
+
       {/* 2. Button */}
-      <section className="space-y-6 border-t border-border pt-10">
+      <section className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Button</h2>
 
         <div className="flex flex-wrap items-center gap-3">
@@ -49,8 +52,10 @@ export function App() {
         </div>
       </section>
 
+      <Separator />
+
       {/* 3. Checkbox */}
-      <section className="space-y-6 border-t border-border pt-10">
+      <section className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Checkbox</h2>
 
         <div className="space-y-3">
@@ -86,8 +91,10 @@ export function App() {
         </div>
       </section>
 
+      <Separator />
+
       {/* 4. Input */}
-      <section className="space-y-6 border-t border-border pt-10">
+      <section className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Input</h2>
 
         <div className="max-w-sm space-y-4">
@@ -118,8 +125,40 @@ export function App() {
         </div>
       </section>
 
-      {/* 5. Switch */}
-      <section className="space-y-6 border-t border-border pt-10">
+      <Separator />
+
+      {/* 5. Separator */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Separator</h2>
+
+        <div className="space-y-6 max-w-sm">
+          {/* 1. 两端羽化渐隐线（Linear / Vercel 光学微刻痕） */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <span>Faded Gradient</span>
+              <span>Subtle</span>
+            </div>
+            <Separator />
+          </div>
+
+          {/* 2. 业务高频带文字分割线 */}
+          <Separator>OR</Separator>
+
+          {/* 3. 垂直羽化分割条 */}
+          <div className="flex h-5 items-center justify-center gap-4 text-xs text-muted-foreground">
+            <span className="hover:text-foreground cursor-pointer">Preview</span>
+            <Separator orientation="vertical" />
+            <span className="hover:text-foreground cursor-pointer">Code</span>
+            <Separator orientation="vertical" />
+            <span className="hover:text-foreground cursor-pointer">Docs</span>
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 6. Switch */}
+      <section className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Switch</h2>
 
         <div className="flex flex-wrap items-center gap-6">

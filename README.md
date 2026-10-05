@@ -7,7 +7,7 @@
 - [x] Button
 - [x] Checkbox
 - [x] Input
-- [ ] Separator
+- [x] Separator
 - [x] Switch
 
 ### Molecules (复合微组件)
