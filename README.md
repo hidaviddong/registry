@@ -7,9 +7,8 @@
 - [x] Button
 - [x] Checkbox
 - [x] Input
-- [ ] Kbd
 - [ ] Separator
-- [ ] Switch
+- [x] Switch
 
 ### Molecules (复合微组件)
 - [ ] Dropdown Menu

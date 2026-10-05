@@ -4,6 +4,7 @@ import { Badge } from "~/components/ui/badge.tsx"
 import { Button } from "~/components/ui/button.tsx"
 import { Checkbox } from "~/components/ui/checkbox.tsx"
 import { Input } from "~/components/ui/input.tsx"
+import { Switch } from "~/components/ui/switch.tsx"
 
 export function App() {
   const [loading, setLoading] = useState(false)
@@ -113,6 +114,31 @@ export function App() {
               type="email"
               defaultValue="invalid-email@"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Switch */}
+      <section className="space-y-6 border-t border-border pt-10">
+        <h2 className="text-2xl font-semibold tracking-tight">Switch</h2>
+
+        <div className="flex flex-wrap items-center gap-6">
+          {/* Small (sm) */}
+          <div className="flex items-center gap-3">
+            <Switch size="sm" defaultChecked />
+            <Switch size="sm" />
+          </div>
+
+          {/* Default */}
+          <div className="flex items-center gap-3">
+            <Switch defaultChecked />
+            <Switch />
+          </div>
+
+          {/* Large (lg) */}
+          <div className="flex items-center gap-3">
+            <Switch size="lg" defaultChecked />
+            <Switch size="lg" />
           </div>
         </div>
       </section>
