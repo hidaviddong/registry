@@ -14,6 +14,13 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu.tsx"
 import { Input } from "~/components/ui/input.tsx"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select.tsx"
 import { Separator } from "~/components/ui/separator.tsx"
 import { Switch } from "~/components/ui/switch.tsx"
 import {
@@ -352,6 +359,47 @@ export function App() {
             </Tooltip>
           </div>
         </TooltipProvider>
+      </section>
+      <Separator />
+
+      {/* 9. Select */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Select</h2>
+
+        <div className="max-w-xs space-y-4">
+          <div>
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+              Default
+            </label>
+            <Select defaultValue="Apple">
+              <SelectTrigger>
+                <SelectValue placeholder="Select a fruit" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Apple">Apple</SelectItem>
+                <SelectItem value="Banana">Banana</SelectItem>
+                <SelectItem value="Blueberry">Blueberry</SelectItem>
+                <SelectItem value="Grapes">Grapes</SelectItem>
+                <SelectItem value="Pineapple">Pineapple</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+              Disabled
+            </label>
+            <Select disabled defaultValue="Apple">
+              <SelectTrigger>
+                <SelectValue placeholder="Select a fruit" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Apple">Apple</SelectItem>
+                <SelectItem value="Banana">Banana</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
       </section>
     </main>
   )

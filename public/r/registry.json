@@ -28,6 +28,22 @@
                     "type": "registry:ui"
                 }
             ]
+        },
+        {
+            "name": "select",
+            "type": "registry:ui",
+            "title": "Select",
+            "description": "A refined, skeuomorphic-crafted Select component built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/select.tsx",
+                    "type": "registry:ui"
+                }
+            ]
         }
     ]
 }
