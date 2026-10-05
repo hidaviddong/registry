@@ -71,6 +71,9 @@ function Switch({
           return (
             <motion.span
               {...thumbProps}
+              // 彻底禁止键盘焦点停留（消除 Tab 键误停在小球上的恶心 Bug）
+              tabIndex={-1}
+              aria-hidden="true"
               className={cn(
                 "pointer-events-none block rounded-full ring-1 ring-black/8",
                 "bg-gradient-to-b from-white to-neutral-50/90",
@@ -82,12 +85,6 @@ function Switch({
               initial={false}
               animate={{
                 x: isChecked ? config.travel : 0,
-              }}
-              whileTap={{
-                scaleX: 1.25,
-              }}
-              style={{
-                originX: isChecked ? 0.8 : 0.2,
               }}
               transition={{
                 type: "spring",
