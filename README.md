@@ -1,8 +1,8 @@
 # David's Registry
 
-## Components Roadmap (Bottom-Up)
+## Components Roadmap 
 
-### Atoms (最小原子)
+### Atoms 
 - [x] Badge
 - [x] Button
 - [x] Checkbox
@@ -10,12 +10,12 @@
 - [x] Separator
 - [x] Switch
 
-### Molecules (复合微组件)
+### Molecules 
 - [x] Dropdown Menu
 - [x] Select
 - [x] Tooltip
 
-### Organisms (容器与弹窗)
+### Organisms 
 - [ ] Card
 - [ ] Dialog
 - [ ] Sheet
