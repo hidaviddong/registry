@@ -36,6 +36,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "~/components/ui/tooltip.tsx"
+import { Toaster, toast } from "~/components/ui/toast.tsx"
 import { cn } from "cn"
 
 function UserIcon(props: React.ComponentProps<"svg">) {
@@ -488,6 +489,72 @@ export function App() {
           </div>
         </div>
       </section>
+
+      <Separator />
+
+      {/* 13. Toast */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Toast</h2>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast("Event created", {
+                description: "Monday, January 3rd at 6:00pm",
+              })
+            }
+          >
+            Default
+          </Button>
+
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast.info("Update available", {
+                description: "A new version of the app is ready to install.",
+              })
+            }
+          >
+            Info
+          </Button>
+
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast.success("Changes saved", {
+                description: "Your settings have been updated.",
+              })
+            }
+          >
+            Success
+          </Button>
+
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast.warning("Storage warning", {
+                description: "You have used 90% of your disk space.",
+              })
+            }
+          >
+            Warning
+          </Button>
+
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast.error("Deployment failed", {
+                description: "Please check your build logs.",
+              })
+            }
+          >
+            Error
+          </Button>
+        </div>
+      </section>
+
+      <Toaster />
     </main>
   )
 }

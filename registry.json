@@ -92,6 +92,23 @@
                     "type": "registry:ui"
                 }
             ]
+        },
+        {
+            "name": "toast",
+            "type": "registry:ui",
+            "title": "Toast",
+            "description": "A refined, skeuomorphic Toast notifications system built with Base UI and Phosphor Icons.",
+            "dependencies": [
+                "@base-ui/react",
+                "@phosphor-icons/react",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/toast.tsx",
+                    "type": "registry:ui"
+                }
+            ]
         }
     ]
 }
