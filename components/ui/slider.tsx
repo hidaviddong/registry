@@ -254,7 +254,31 @@ function SliderThumb({
         const isDragging =
           Boolean(state.dragging) &&
           (state.activeThumbIndex === thumbIndex || state.activeThumbIndex === -1)
-        const currentValue = state.values?.[thumbIndex] ?? ""
+        const currentValue = Number(state.values?.[thumbIndex] ?? 0)
+        const min = state.min ?? 0
+        const max = state.max ?? 100
+        const isAtMin = currentValue <= min
+        const isAtMax = currentValue >= max
+        const isVertical = state.orientation === "vertical"
+
+        // 到两端（0% 与 100%）时的物理碰撞形变：对齐 Switch 的弹簧惯性与微形变手感
+        const boundaryX = isAtMin ? -1.75 : isAtMax ? 1.75 : 0
+        const boundaryY = isAtMin ? 1.75 : isAtMax ? -1.75 : 0
+        const squishScaleParallel = isAtMin || isAtMax ? 0.88 : 1
+        const squishScaleCross = isAtMin || isAtMax ? 1.08 : 1
+
+        const targetX = !isVertical ? (isDragging ? boundaryX : 0) : 0
+        const targetY = isVertical ? (isDragging ? boundaryY : 0) : 0
+        const targetScaleX = isDragging
+          ? !isVertical
+            ? squishScaleParallel
+            : squishScaleCross
+          : 1
+        const targetScaleY = isDragging
+          ? !isVertical
+            ? squishScaleCross
+            : squishScaleParallel
+          : 1
 
         return (
           <div {...thumbProps}>
@@ -271,9 +295,9 @@ function SliderThumb({
                   exit={{ opacity: 0, y: 4, scale: 0.75 }}
                   transition={{
                     type: "spring",
-                    stiffness: 550,
-                    damping: 28,
-                    mass: 0.5,
+                    stiffness: 580,
+                    damping: 32,
+                    mass: 0.8,
                   }}
                   className="pointer-events-none absolute -top-1 left-1/2 -translate-x-1/2 z-30 flex items-center justify-center rounded-md bg-foreground px-1.5 py-0.5 text-[10px] font-mono font-medium text-background shadow-md select-none"
                 >
@@ -284,7 +308,7 @@ function SliderThumb({
               )}
             </AnimatePresence>
 
-            {/* 核心物理拟物按键碟面：使用 Motion Spring 实现指尖悬浮吸附与按压弹性回弹 */}
+            {/* 核心物理拟物按键碟面：使用 Switch 同款 Spring 物理弹簧（stiffness: 580, damping: 32, mass: 0.8） */}
             <motion.span
               tabIndex={-1}
               aria-hidden="true"
@@ -293,15 +317,23 @@ function SliderThumb({
                 // 双层外边框与白净微渐变
                 "bg-gradient-to-b from-white to-neutral-50/95 ring-1 ring-black/10 dark:ring-white/20",
                 // 悬浮物理立体微阴影 + 顶部白光
-                "shadow-[0_1.5px_3px_0_rgba(0,0,0,0.12),0_1px_1px_0_rgba(0,0,0,0.08),inset_0_1px_0_0_rgba(255,255,255,0.95)]"
+                "shadow-[0_1.5px_3px_0_rgba(0,0,0,0.12),0_1px_1px_0_rgba(0,0,0,0.08),inset_0_1px_0_0_rgba(255,255,255,0.95)]",
+                // 达到最右端(max)时与 Switch 开关选中的沉稳接地投影对齐
+                isAtMax && "shadow-[0_1px_2px_rgba(0,0,0,0.18)]"
               )}
+              animate={{
+                x: targetX,
+                y: targetY,
+                scaleX: targetScaleX,
+                scaleY: targetScaleY,
+              }}
               whileHover={{ scale: 1.12 }}
-              whileTap={{ scale: 0.9 }}
+              whileTap={{ scale: 0.92 }}
               transition={{
                 type: "spring",
-                stiffness: 520,
-                damping: 26,
-                mass: 0.5,
+                stiffness: 580,
+                damping: 32,
+                mass: 0.8,
               }}
             />
           </div>
