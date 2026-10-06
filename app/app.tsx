@@ -15,6 +15,11 @@ import {
 } from "~/components/ui/dropdown-menu.tsx"
 import { Input } from "~/components/ui/input.tsx"
 import {
+  Progress,
+  ProgressLabel,
+  ProgressValue,
+} from "~/components/ui/progress.tsx"
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -22,6 +27,8 @@ import {
   SelectValue,
 } from "~/components/ui/select.tsx"
 import { Separator } from "~/components/ui/separator.tsx"
+import { Skeleton } from "~/components/ui/skeleton.tsx"
+import { Slider } from "~/components/ui/slider.tsx"
 import { Switch } from "~/components/ui/switch.tsx"
 import {
   Tooltip,
@@ -398,6 +405,86 @@ export function App() {
                 <SelectItem value="Banana">Banana</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 10. Progress */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Progress</h2>
+
+        <div className="max-w-sm space-y-4">
+          <div>
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+              Default
+            </label>
+            <Progress value={60} />
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+              With Label & Value
+            </label>
+            <Progress value={75}>
+              <ProgressLabel>Downloading</ProgressLabel>
+              <ProgressValue />
+            </Progress>
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+              Indeterminate
+            </label>
+            <Progress value={null} />
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 11. Skeleton */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Skeleton</h2>
+
+        <div className="max-w-sm">
+          <div className="flex items-center gap-3">
+            <Skeleton className="size-10 rounded-full" />
+            <div className="space-y-2 flex-1">
+              <Skeleton className="h-4 w-3/4" />
+              <Skeleton className="h-3 w-1/2" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 12. Slider */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Slider</h2>
+
+        <div className="max-w-sm space-y-4">
+          <div>
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+              Default
+            </label>
+            <Slider defaultValue={50} />
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+              Range
+            </label>
+            <Slider defaultValue={[25, 75]} />
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+              Disabled
+            </label>
+            <Slider disabled defaultValue={40} />
           </div>
         </div>
       </section>

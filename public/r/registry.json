@@ -44,6 +44,54 @@
                     "type": "registry:ui"
                 }
             ]
+        },
+        {
+            "name": "progress",
+            "type": "registry:ui",
+            "title": "Progress",
+            "description": "A refined, skeuomorphic Progress bar component built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/progress.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "skeleton",
+            "type": "registry:ui",
+            "title": "Skeleton",
+            "description": "A skeuomorphic-crafted Skeleton loading placeholder with shimmering sheen.",
+            "dependencies": [
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/skeleton.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "slider",
+            "type": "registry:ui",
+            "title": "Slider",
+            "description": "A tactile, skeuomorphic Slider component built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "cn",
+                "motion"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/slider.tsx",
+                    "type": "registry:ui"
+                }
+            ]
         }
     ]
 }
