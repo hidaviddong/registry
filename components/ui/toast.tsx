@@ -3,12 +3,12 @@
 import * as React from "react"
 import { Toast as ToastPrimitive } from "@base-ui/react/toast"
 import {
-  CheckCircle,
-  CircleNotch,
-  Info,
-  WarningCircle,
-  X,
-  XCircle,
+  CheckCircleIcon,
+  CircleNotchIcon,
+  InfoIcon,
+  WarningCircleIcon,
+  XCircleIcon,
+  XIcon,
 } from "@phosphor-icons/react"
 import { cn } from "cn"
 
@@ -16,15 +16,9 @@ import { Button } from "./button.tsx"
 
 const rawToastManager = ToastPrimitive.createToastManager()
 
-interface ToastOptions {
-  id?: string
-  description?: React.ReactNode
-  action?: React.ReactNode
-  priority?: "normal" | "high"
-  [key: string]: unknown
-}
+type ToastOptions = Omit<Parameters<typeof rawToastManager.add>[0], "title">
 
-// 简洁易用的 Sonner 风格指令式 API
+// 简洁直观的指令式 API（兼容 Sonner 调用习惯）
 function toast(title: React.ReactNode, options?: ToastOptions) {
   return rawToastManager.add({
     title,
@@ -171,7 +165,7 @@ function ToastClose({
       )}
       {...props}
     >
-      {children ?? <X className="size-3.5" weight="bold" aria-hidden="true" />}
+      {children ?? <XIcon className="size-3.5" weight="bold" aria-hidden="true" />}
     </ToastPrimitive.Close>
   )
 }
@@ -180,23 +174,23 @@ function ToastIcon({ type }: { type: string | undefined }) {
   let icon: React.ReactNode = null
 
   if (type === "success") {
-    icon = <CheckCircle weight="fill" className="size-4.5 text-emerald-500" aria-hidden="true" />
+    icon = <CheckCircleIcon weight="fill" className="size-4.5 text-emerald-500" aria-hidden="true" />
   }
 
   if (type === "info") {
-    icon = <Info weight="fill" className="size-4.5 text-primary" aria-hidden="true" />
+    icon = <InfoIcon weight="fill" className="size-4.5 text-primary" aria-hidden="true" />
   }
 
   if (type === "warning") {
-    icon = <WarningCircle weight="fill" className="size-4.5 text-amber-500" aria-hidden="true" />
+    icon = <WarningCircleIcon weight="fill" className="size-4.5 text-amber-500" aria-hidden="true" />
   }
 
   if (type === "error") {
-    icon = <XCircle weight="fill" className="size-4.5 text-destructive" aria-hidden="true" />
+    icon = <XCircleIcon weight="fill" className="size-4.5 text-destructive" aria-hidden="true" />
   }
 
   if (type === "loading") {
-    icon = <CircleNotch className="size-4.5 animate-spin text-muted-foreground" aria-hidden="true" />
+    icon = <CircleNotchIcon className="size-4.5 animate-spin text-muted-foreground" aria-hidden="true" />
   }
 
   if (!icon) {

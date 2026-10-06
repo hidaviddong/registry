@@ -17,7 +17,7 @@
 - [x] Dropdown Menu
 - [x] Select
 - [x] Tooltip
-- [ ] Sonner
+- [x] Toast
 - [ ] Radio Group
 - [ ] Scroll Area
 - [ ] Tabs
