@@ -9,9 +9,9 @@
 - [x] Input
 - [x] Separator
 - [x] Switch
-- [ ] Progress
-- [ ] Skeleton
-- [ ] Slider
+- [x] Progress
+- [x] Skeleton
+- [x] Slider
 
 ### Molecules 
 - [x] Dropdown Menu
