@@ -109,6 +109,23 @@
                     "type": "registry:ui"
                 }
             ]
+        },
+        {
+            "name": "radio-group",
+            "type": "registry:ui",
+            "title": "Radio Group",
+            "description": "A refined, tactile Radio Group component built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "cn",
+                "motion"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/radio-group.tsx",
+                    "type": "registry:ui"
+                }
+            ]
         }
     ]
 }

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "title": "Radio Group",
+  "description": "A refined, tactile Radio Group component built with Base UI.",
+  "dependencies": [
+    "@base-ui/react",
+    "cn",
+    "motion"
+  ],
+  "files": [
+    {
+      "path": "components/ui/radio-group.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Radio as RadioPrimitive } from \"@base-ui/react/radio\"\nimport { RadioGroup as RadioGroupPrimitive } from \"@base-ui/react/radio-group\"\nimport { motion } from \"motion/react\"\nimport { cn } from \"cn\"\n\nfunction RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {\n  return (\n    <RadioGroupPrimitive\n      data-slot=\"radio-group\"\n      className={cn(\"grid gap-2.5\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction RadioGroupItem({\n  className,\n  ...props\n}: RadioPrimitive.Root.Props) {\n  return (\n    <RadioPrimitive.Root\n      data-slot=\"radio-group-item\"\n      className={cn(\n        // 基础尺寸与排版\n        \"peer relative flex size-4 shrink-0 rounded-full border outline-none select-none cursor-pointer\",\n        \"transition-[color,background-color,border-color,box-shadow,transform] duration-150 ease-out\",\n        \"active:not-disabled:scale-[0.95]\",\n\n        // 未选中态：白净拟物小键槽（顶部内高光 + 接地微柔和阴影，与 Checkbox 完全统一）\n        \"border-border bg-gradient-to-b from-card to-muted/40\",\n        \"shadow-[0_1px_2px_0_color-mix(in_oklch,var(--foreground)_5%,transparent),inset_0_1px_0_0_color-mix(in_oklch,var(--background)_80%,transparent)]\",\n\n        // 聚焦状态\n        \"focus-visible:border-ring focus-visible:ring-[2.5px] focus-visible:ring-ring/40\",\n\n        // 选中态：Button / Checkbox 同款高光与深蓝微投影\n        \"data-checked:border-[color-mix(in_oklch,var(--primary),black_24%)]\",\n        \"data-checked:bg-gradient-to-b data-checked:from-[color-mix(in_oklch,var(--primary),white_10%)] data-checked:to-[color-mix(in_oklch,var(--primary),black_8%)]\",\n        \"data-checked:text-primary-foreground\",\n        \"data-checked:shadow-[0_1px_2px_0_color-mix(in_oklch,var(--primary)_25%,transparent),0_2px_4px_0_color-mix(in_oklch,var(--primary)_18%,transparent),inset_0_1px_0_0_oklch(1_0_0_/_0.35),inset_0_-1.5px_2px_0_oklch(0_0_0_/_0.15)]\",\n\n        // 禁用状态\n        \"disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none disabled:active:scale-100\",\n\n        // 错误状态\n        \"aria-invalid:border-destructive aria-invalid:ring-destructive/20\",\n\n        // 扩大微触控热区\n        \"after:absolute after:-inset-2 after:content-['']\",\n\n        className\n      )}\n      {...props}\n    >\n      <RadioPrimitive.Indicator\n        keepMounted\n        data-slot=\"radio-group-indicator\"\n        className=\"grid size-full place-content-center text-current\"\n        render={(indicatorProps, state) => {\n          const isChecked = Boolean(state.checked)\n          return (\n            <span {...indicatorProps}>\n              <motion.span\n                className=\"block size-1.5 rounded-full bg-primary-foreground shadow-[0_0.5px_1px_rgba(0,0,0,0.35)]\"\n                initial={false}\n                animate={{\n                  scale: isChecked ? 1 : 0,\n                  opacity: isChecked ? 1 : 0,\n                }}\n                transition={{\n                  type: \"spring\",\n                  stiffness: 550,\n                  damping: 30,\n                }}\n              />\n            </span>\n          )\n        }}\n      />\n    </RadioPrimitive.Root>\n  )\n}\n\nexport { RadioGroup, RadioGroupItem }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

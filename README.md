@@ -18,7 +18,7 @@
 - [x] Select
 - [x] Tooltip
 - [x] Toast
-- [ ] Radio Group
+- [x] Radio Group
 - [ ] Scroll Area
 - [ ] Tabs
 

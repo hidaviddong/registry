@@ -20,6 +20,10 @@ import {
   ProgressValue,
 } from "~/components/ui/progress.tsx"
 import {
+  RadioGroup,
+  RadioGroupItem,
+} from "~/components/ui/radio-group.tsx"
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -552,6 +556,55 @@ export function App() {
             Error
           </Button>
         </div>
+      </section>
+
+      <Separator />
+
+      {/* 14. Radio Group */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Radio Group</h2>
+
+        <RadioGroup defaultValue="comfortable" className="max-w-sm space-y-3">
+          <div className="flex items-center gap-2">
+            <RadioGroupItem value="default" id="r-default" />
+            <label
+              htmlFor="r-default"
+              className="text-sm font-medium leading-none select-none cursor-pointer"
+            >
+              Default
+            </label>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <RadioGroupItem value="comfortable" id="r-comfortable" />
+            <label
+              htmlFor="r-comfortable"
+              className="text-sm font-medium leading-none select-none cursor-pointer"
+            >
+              Comfortable
+            </label>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <RadioGroupItem value="compact" id="r-compact" />
+            <label
+              htmlFor="r-compact"
+              className="text-sm font-medium leading-none select-none cursor-pointer"
+            >
+              Compact
+            </label>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <RadioGroupItem disabled value="disabled" id="r-disabled" />
+            <label
+              htmlFor="r-disabled"
+              className="text-sm font-medium leading-none select-none text-muted-foreground/60 cursor-not-allowed"
+            >
+              Disabled
+            </label>
+          </div>
+        </RadioGroup>
       </section>
 
       <Toaster />
