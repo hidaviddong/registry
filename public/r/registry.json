@@ -166,7 +166,7 @@
             "name": "dialog",
             "type": "registry:ui",
             "title": "Dialog",
-            "description": "A refined, tactile Dialog component expanding from trigger origin with spring physics built with Motion.",
+            "description": "A refined, tactile Dialog component with subtle motion.",
             "dependencies": [
                 "cn",
                 "motion"
@@ -174,6 +174,26 @@
             "files": [
                 {
                     "path": "components/ui/dialog.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "drawer",
+            "type": "registry:ui",
+            "title": "Drawer",
+            "description": "A refined, tactile Drawer component with directional swipe gestures and snap points built with Base UI.",
+            "registryDependencies": [
+                "button"
+            ],
+            "dependencies": [
+                "@base-ui/react",
+                "class-variance-authority",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/drawer.tsx",
                     "type": "registry:ui"
                 }
             ]

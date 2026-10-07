@@ -16,6 +16,16 @@ import {
   DialogTrigger,
 } from "~/components/ui/dialog.tsx"
 import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "~/components/ui/drawer.tsx"
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
@@ -722,6 +732,58 @@ export function App() {
             </DialogContent>
           </Dialog>
         </div>
+      </section>
+
+      <Separator />
+
+      {/* 18. Drawer */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Drawer</h2>
+
+        <Drawer>
+          <DrawerTrigger>Open drawer</DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader>
+              <DrawerTitle>Edit profile</DrawerTitle>
+              <DrawerDescription>
+                Update your public profile information. Swipe down or press
+                Escape to close.
+              </DrawerDescription>
+            </DrawerHeader>
+
+            <div className="space-y-4 px-5 py-5">
+              <div className="space-y-1.5">
+                <label
+                  htmlFor="drawer-name"
+                  className="text-xs font-medium text-foreground"
+                >
+                  Display name
+                </label>
+                <Input id="drawer-name" defaultValue="David Dong" />
+              </div>
+
+              <div className="space-y-1.5">
+                <label
+                  htmlFor="drawer-handle"
+                  className="text-xs font-medium text-foreground"
+                >
+                  Username
+                </label>
+                <Input id="drawer-handle" defaultValue="daviddong" />
+              </div>
+            </div>
+
+            <DrawerFooter>
+              <DrawerClose>Cancel</DrawerClose>
+              <DrawerClose
+                variant="default"
+                onClick={() => toast.success("Profile updated")}
+              >
+                Save changes
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
       </section>
 
       <Toaster />

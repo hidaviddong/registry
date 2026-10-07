@@ -117,7 +117,9 @@ function DialogTrigger({
       className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     >
-      {children}
+      <span className="relative z-10 inline-flex items-center justify-center gap-1.5">
+        {children}
+      </span>
     </button>
   )
 }
@@ -306,7 +308,9 @@ function DialogClose({
       className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     >
-      {children}
+      <span className="relative z-10 inline-flex items-center justify-center gap-1.5">
+        {children}
+      </span>
     </button>
   )
 }
