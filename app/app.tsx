@@ -24,6 +24,9 @@ import {
   RadioGroupItem,
 } from "~/components/ui/radio-group.tsx"
 import {
+  ScrollArea,
+} from "~/components/ui/scroll-area.tsx"
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -605,6 +608,29 @@ export function App() {
             </label>
           </div>
         </RadioGroup>
+      </section>
+
+      <Separator />
+
+      {/* 15. Scroll Area */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Scroll Area</h2>
+
+        <div className="w-56">
+          <ScrollArea className="h-64 bg-background">
+            <div className="divide-y divide-border/40 pr-3 text-xs">
+              {Array.from({ length: 25 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-between py-2"
+                >
+                  <span>Item #{i + 1}</span>
+                  <span className="font-mono text-muted-foreground">v1.0.{i + 1}</span>
+                </div>
+              ))}
+            </div>
+          </ScrollArea>
+        </div>
       </section>
 
       <Toaster />

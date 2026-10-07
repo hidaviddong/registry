@@ -126,6 +126,23 @@
                     "type": "registry:ui"
                 }
             ]
+        },
+        {
+            "name": "scroll-area",
+            "type": "registry:ui",
+            "title": "Scroll Area",
+            "description": "A tactile, skeuomorphic Scroll Area component with spring physics and overflow edge masks built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "cn",
+                "motion"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/scroll-area.tsx",
+                    "type": "registry:ui"
+                }
+            ]
         }
     ]
 }
