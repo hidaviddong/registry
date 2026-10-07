@@ -1,62 +1,59 @@
 "use client"
 
 import * as React from "react"
-import { Menu as MenuPrimitive } from "@base-ui/react/menu"
+import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu"
 import { CaretRightIcon, CheckIcon } from "@phosphor-icons/react"
 import { cn } from "cn"
 
-function DropdownMenu(
-  props: React.ComponentProps<typeof MenuPrimitive.Root>
+function ContextMenu(
+  props: React.ComponentProps<typeof ContextMenuPrimitive.Root>
 ) {
-  return <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />
+  return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />
 }
 
-interface DropdownMenuTriggerProps
-  extends React.ComponentProps<typeof MenuPrimitive.Trigger> {}
+interface ContextMenuTriggerProps
+  extends React.ComponentProps<typeof ContextMenuPrimitive.Trigger> {}
 
-function DropdownMenuTrigger({
+function ContextMenuTrigger({
   className,
   ...props
-}: DropdownMenuTriggerProps) {
+}: ContextMenuTriggerProps) {
   return (
-    <MenuPrimitive.Trigger
-      data-slot="dropdown-menu-trigger"
-      className={cn("outline-none", className)}
+    <ContextMenuPrimitive.Trigger
+      data-slot="context-menu-trigger"
+      className={cn("outline-none select-none", className)}
       {...props}
     />
   )
 }
 
-function DropdownMenuGroup(
-  props: React.ComponentProps<typeof MenuPrimitive.Group>
+function ContextMenuGroup(
+  props: React.ComponentProps<typeof ContextMenuPrimitive.Group>
 ) {
-  return <MenuPrimitive.Group data-slot="dropdown-menu-group" {...props} />
+  return <ContextMenuPrimitive.Group data-slot="context-menu-group" {...props} />
 }
 
-interface DropdownMenuContentProps
-  extends React.ComponentProps<typeof MenuPrimitive.Popup> {
+interface ContextMenuContentProps
+  extends React.ComponentProps<typeof ContextMenuPrimitive.Popup> {
   sideOffset?: number
-  side?: "top" | "bottom" | "left" | "right"
-  align?: "start" | "center" | "end"
+  alignOffset?: number
 }
 
-function DropdownMenuContent({
+function ContextMenuContent({
   className,
-  sideOffset = 5,
-  side = "bottom",
-  align = "start",
+  sideOffset = 4,
+  alignOffset = 0,
   children,
   ...props
-}: DropdownMenuContentProps) {
+}: ContextMenuContentProps) {
   return (
-    <MenuPrimitive.Portal>
-      <MenuPrimitive.Positioner
-        side={side}
+    <ContextMenuPrimitive.Portal>
+      <ContextMenuPrimitive.Positioner
         sideOffset={sideOffset}
-        align={align}
+        alignOffset={alignOffset}
       >
-        <MenuPrimitive.Popup
-          data-slot="dropdown-menu-content"
+        <ContextMenuPrimitive.Popup
+          data-slot="context-menu-content"
           className={cn(
             // 基础面板尺寸与排版
             "z-50 min-w-44 overflow-hidden rounded-xl p-1 text-sm select-none outline-none",
@@ -77,27 +74,27 @@ function DropdownMenuContent({
           {...props}
         >
           {children}
-        </MenuPrimitive.Popup>
-      </MenuPrimitive.Positioner>
-    </MenuPrimitive.Portal>
+        </ContextMenuPrimitive.Popup>
+      </ContextMenuPrimitive.Positioner>
+    </ContextMenuPrimitive.Portal>
   )
 }
 
-interface DropdownMenuItemProps
-  extends React.ComponentProps<typeof MenuPrimitive.Item> {
+interface ContextMenuItemProps
+  extends React.ComponentProps<typeof ContextMenuPrimitive.Item> {
   variant?: "default" | "destructive"
   inset?: boolean
 }
 
-function DropdownMenuItem({
+function ContextMenuItem({
   className,
   variant = "default",
   inset,
   ...props
-}: DropdownMenuItemProps) {
+}: ContextMenuItemProps) {
   return (
-    <MenuPrimitive.Item
-      data-slot="dropdown-menu-item"
+    <ContextMenuPrimitive.Item
+      data-slot="context-menu-item"
       data-variant={variant}
       className={cn(
         // 紧凑利落的菜单项排版与微触感回弹
@@ -112,7 +109,7 @@ function DropdownMenuItem({
           "[&_svg]:text-muted-foreground [&_svg]:transition-colors group-data-[highlighted]:[&_svg]:text-foreground",
         ],
 
-        // 危险/破坏性项（严格对齐设计系统 var(--destructive) 色值，与 Button / Badge 完全一致）
+        // 危险项（严格对齐设计系统 var(--destructive) 色值，与 Button / Badge 完全一致）
         variant === "destructive" && [
           "text-destructive",
           "data-[highlighted]:bg-destructive/10 data-[highlighted]:text-destructive",
@@ -129,15 +126,15 @@ function DropdownMenuItem({
   )
 }
 
-function DropdownMenuCheckboxItem({
+function ContextMenuCheckboxItem({
   className,
   children,
   checked,
   ...props
-}: React.ComponentProps<typeof MenuPrimitive.CheckboxItem>) {
+}: React.ComponentProps<typeof ContextMenuPrimitive.CheckboxItem>) {
   return (
-    <MenuPrimitive.CheckboxItem
-      data-slot="dropdown-menu-checkbox-item"
+    <ContextMenuPrimitive.CheckboxItem
+      data-slot="context-menu-checkbox-item"
       checked={checked}
       className={cn(
         "group relative flex h-8 items-center gap-2.5 rounded-lg pr-2.5 pl-8 text-sm font-normal outline-none select-none cursor-pointer",
@@ -149,35 +146,35 @@ function DropdownMenuCheckboxItem({
       {...props}
     >
       <span className="absolute left-2.5 flex size-4 items-center justify-center pointer-events-none">
-        <MenuPrimitive.CheckboxItemIndicator>
+        <ContextMenuPrimitive.CheckboxItemIndicator>
           <CheckIcon className="size-3.5 text-primary" weight="bold" />
-        </MenuPrimitive.CheckboxItemIndicator>
+        </ContextMenuPrimitive.CheckboxItemIndicator>
       </span>
       {children}
-    </MenuPrimitive.CheckboxItem>
+    </ContextMenuPrimitive.CheckboxItem>
   )
 }
 
-function DropdownMenuSub(
-  props: React.ComponentProps<typeof MenuPrimitive.SubmenuRoot>
+function ContextMenuSub(
+  props: React.ComponentProps<typeof ContextMenuPrimitive.SubmenuRoot>
 ) {
-  return <MenuPrimitive.SubmenuRoot data-slot="dropdown-menu-sub" {...props} />
+  return <ContextMenuPrimitive.SubmenuRoot data-slot="context-menu-sub" {...props} />
 }
 
-interface DropdownMenuSubTriggerProps
-  extends React.ComponentProps<typeof MenuPrimitive.SubmenuTrigger> {
+interface ContextMenuSubTriggerProps
+  extends React.ComponentProps<typeof ContextMenuPrimitive.SubmenuTrigger> {
   inset?: boolean
 }
 
-function DropdownMenuSubTrigger({
+function ContextMenuSubTrigger({
   className,
   inset,
   children,
   ...props
-}: DropdownMenuSubTriggerProps) {
+}: ContextMenuSubTriggerProps) {
   return (
-    <MenuPrimitive.SubmenuTrigger
-      data-slot="dropdown-menu-sub-trigger"
+    <ContextMenuPrimitive.SubmenuTrigger
+      data-slot="context-menu-sub-trigger"
       className={cn(
         "group relative flex h-8 items-center gap-2.5 rounded-lg px-2.5 text-sm font-normal outline-none select-none cursor-pointer",
         "transition-all duration-75 active:scale-[0.985]",
@@ -191,31 +188,31 @@ function DropdownMenuSubTrigger({
     >
       {children}
       <CaretRightIcon className="ml-auto size-3.5 text-muted-foreground/70 transition-transform group-data-[highlighted]:text-foreground" />
-    </MenuPrimitive.SubmenuTrigger>
+    </ContextMenuPrimitive.SubmenuTrigger>
   )
 }
 
-interface DropdownMenuSubContentProps
-  extends React.ComponentProps<typeof MenuPrimitive.Popup> {
+interface ContextMenuSubContentProps
+  extends React.ComponentProps<typeof ContextMenuPrimitive.Popup> {
   sideOffset?: number
   alignOffset?: number
 }
 
-function DropdownMenuSubContent({
+function ContextMenuSubContent({
   className,
   sideOffset = 4,
   alignOffset = -4,
   children,
   ...props
-}: DropdownMenuSubContentProps) {
+}: ContextMenuSubContentProps) {
   return (
-    <MenuPrimitive.Portal>
-      <MenuPrimitive.Positioner
+    <ContextMenuPrimitive.Portal>
+      <ContextMenuPrimitive.Positioner
         sideOffset={sideOffset}
         alignOffset={alignOffset}
       >
-        <MenuPrimitive.Popup
-          data-slot="dropdown-menu-sub-content"
+        <ContextMenuPrimitive.Popup
+          data-slot="context-menu-sub-content"
           className={cn(
             // 基础面板尺寸与排版
             "z-50 min-w-40 overflow-hidden rounded-xl p-1 text-sm select-none outline-none",
@@ -236,13 +233,13 @@ function DropdownMenuSubContent({
           {...props}
         >
           {children}
-        </MenuPrimitive.Popup>
-      </MenuPrimitive.Positioner>
-    </MenuPrimitive.Portal>
+        </ContextMenuPrimitive.Popup>
+      </ContextMenuPrimitive.Positioner>
+    </ContextMenuPrimitive.Portal>
   )
 }
 
-function DropdownMenuLabel({
+function ContextMenuLabel({
   className,
   inset,
   ...props
@@ -251,7 +248,7 @@ function DropdownMenuLabel({
 }) {
   return (
     <div
-      data-slot="dropdown-menu-label"
+      data-slot="context-menu-label"
       className={cn(
         "px-2.5 py-1 text-xs font-medium text-muted-foreground select-none",
         inset && "pl-8",
@@ -262,15 +259,15 @@ function DropdownMenuLabel({
   )
 }
 
-function DropdownMenuSeparator({
+function ContextMenuSeparator({
   className,
   ...props
-}: React.ComponentProps<typeof MenuPrimitive.Separator>) {
+}: React.ComponentProps<typeof ContextMenuPrimitive.Separator>) {
   return (
-    <MenuPrimitive.Separator
-      data-slot="dropdown-menu-separator"
+    <ContextMenuPrimitive.Separator
+      data-slot="context-menu-separator"
       className={cn(
-        // 复用我们标志性的两端羽化渐隐微分割线，彻底消除突兀截断的黑硬杠
+        // 两端羽化渐隐微分割线
         "-mx-1 my-1 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent",
         className
       )}
@@ -279,13 +276,13 @@ function DropdownMenuSeparator({
   )
 }
 
-function DropdownMenuShortcut({
+function ContextMenuShortcut({
   className,
   ...props
 }: React.ComponentProps<"span">) {
   return (
     <span
-      data-slot="dropdown-menu-shortcut"
+      data-slot="context-menu-shortcut"
       className={cn(
         "ml-auto pl-4 text-xs font-normal tracking-wide text-muted-foreground/60 transition-colors group-data-[highlighted]:text-foreground/80 select-none",
         className
@@ -296,16 +293,16 @@ function DropdownMenuShortcut({
 }
 
 export {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuCheckboxItem,
-  DropdownMenuSub,
-  DropdownMenuSubTrigger,
-  DropdownMenuSubContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuGroup,
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuCheckboxItem,
+  ContextMenuSub,
+  ContextMenuSubTrigger,
+  ContextMenuSubContent,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuGroup,
 }

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { Badge } from "~/components/ui/badge.tsx"
 import { Button } from "~/components/ui/button.tsx"
@@ -36,6 +36,42 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu.tsx"
 import { Input } from "~/components/ui/input.tsx"
+import { Kbd, KbdGroup } from "~/components/ui/kbd.tsx"
+import {
+  ArrowRightIcon,
+  CaretDownIcon,
+  CommandIcon,
+  GearIcon,
+  MagnifyingGlassIcon,
+  TrashIcon,
+  UserIcon,
+} from "@phosphor-icons/react"
+import { Label } from "~/components/ui/label.tsx"
+import { Textarea } from "~/components/ui/textarea.tsx"
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldLabel,
+} from "~/components/ui/field.tsx"
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+} from "~/components/ui/context-menu.tsx"
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "~/components/ui/command.tsx"
 import {
   Progress,
   ProgressLabel,
@@ -82,88 +118,30 @@ import {
 import { Toaster, toast } from "~/components/ui/toast.tsx"
 import { cn } from "cn"
 
-function UserIcon(props: React.ComponentProps<"svg">) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
-    </svg>
-  )
-}
 
-function SettingsIcon(props: React.ComponentProps<"svg">) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <circle cx="12" cy="12" r="3" />
-      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-    </svg>
-  )
-}
-
-function TrashIcon(props: React.ComponentProps<"svg">) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M3 6h18" />
-      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-    </svg>
-  )
-}
-
-function ChevronDownIcon(props: React.ComponentProps<"svg">) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="m6 9 6 6 6-6" />
-    </svg>
-  )
-}
 
 export function App() {
   const [loading, setLoading] = useState(false)
+  const [commandOpen, setCommandOpen] = useState(false)
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault()
+        setCommandOpen((open) => !open)
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [])
+
+  function navigateTo(id: string) {
+    setCommandOpen(false)
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+  }
 
   async function handleLoading() {
     setLoading(true)
@@ -174,7 +152,7 @@ export function App() {
   return (
     <main className="mx-auto w-full max-w-3xl space-y-12 px-6 py-16">
       {/* 1. Badge */}
-      <section className="space-y-6">
+      <section id="badge" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Badge</h2>
 
         <div className="flex flex-wrap items-center gap-3">
@@ -189,7 +167,7 @@ export function App() {
       <Separator />
 
       {/* 2. Button */}
-      <section className="space-y-6">
+      <section id="button" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Button</h2>
 
         <div className="flex flex-wrap items-center gap-3">
@@ -210,7 +188,7 @@ export function App() {
       <Separator />
 
       {/* 3. Checkbox */}
-      <section className="space-y-6">
+      <section id="checkbox" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Checkbox</h2>
 
         <div className="space-y-3">
@@ -249,43 +227,30 @@ export function App() {
       <Separator />
 
       {/* 4. Dropdown Menu */}
-      <section className="space-y-6">
+      <section id="dropdown-menu" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Dropdown Menu</h2>
 
         <div className="flex flex-wrap items-center gap-4">
           <DropdownMenu>
             <DropdownMenuTrigger
-              className={cn(
-                "inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-xs font-medium select-none cursor-pointer",
-                "border border-border/80 bg-gradient-to-b from-card to-card/90 text-foreground",
-                "shadow-[0_1px_2px_0_color-mix(in_oklch,var(--foreground)_5%,transparent),inset_0_1px_0_0_color-mix(in_oklch,var(--background)_80%,transparent)]",
-                "hover:bg-muted/50 transition-colors outline-none",
-                "data-[popup-open]:bg-muted/70"
-              )}
+              render={<Button variant="outline" size="sm" className="gap-2" />}
             >
               <span>Options</span>
-              <ChevronDownIcon className="size-3 text-muted-foreground transition-transform duration-150 in-data-[popup-open]:rotate-180" />
+              <CaretDownIcon className="size-3.5 text-muted-foreground transition-transform duration-150 in-data-[popup-open]:rotate-180" />
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuGroup>
                 <DropdownMenuItem>
-                  <UserIcon />
                   <span>Profile</span>
-                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <SettingsIcon />
                   <span>Settings</span>
-                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuItem variant="destructive">
-                <TrashIcon />
                 <span>Delete Account</span>
-                <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -295,29 +260,30 @@ export function App() {
       <Separator />
 
       {/* 5. Input */}
-      <section className="space-y-6">
+      <section id="input" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Input</h2>
 
         <div className="max-w-sm space-y-4">
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+            <Label htmlFor="input-default" size="sm" variant="muted" className="mb-1.5 block">
               Default
-            </label>
-            <Input type="text" placeholder="Enter your name..." />
+            </Label>
+            <Input id="input-default" type="text" placeholder="Enter your name..." />
           </div>
 
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+            <Label htmlFor="input-disabled" size="sm" variant="muted" disabled className="mb-1.5 block">
               Disabled
-            </label>
-            <Input disabled type="text" placeholder="Disabled input..." />
+            </Label>
+            <Input id="input-disabled" disabled type="text" placeholder="Disabled input..." />
           </div>
 
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+            <Label htmlFor="input-invalid" size="sm" variant="destructive" className="mb-1.5 block">
               Invalid
-            </label>
+            </Label>
             <Input
+              id="input-invalid"
               aria-invalid="true"
               type="email"
               defaultValue="invalid-email@"
@@ -329,7 +295,7 @@ export function App() {
       <Separator />
 
       {/* 6. Separator */}
-      <section className="space-y-6">
+      <section id="separator" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Separator</h2>
 
         <div className="space-y-6 max-w-sm">
@@ -359,7 +325,7 @@ export function App() {
       <Separator />
 
       {/* 7. Switch */}
-      <section className="space-y-6">
+      <section id="switch" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Switch</h2>
 
         <div className="flex flex-wrap items-center gap-6">
@@ -386,7 +352,7 @@ export function App() {
       <Separator />
 
       {/* 8. Tooltip */}
-      <section className="space-y-6">
+      <section id="tooltip" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Tooltip</h2>
 
         <TooltipProvider>
@@ -414,7 +380,7 @@ export function App() {
       <Separator />
 
       {/* 9. Select */}
-      <section className="space-y-6">
+      <section id="select" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Select</h2>
 
         <div className="max-w-xs space-y-4">
@@ -456,7 +422,7 @@ export function App() {
       <Separator />
 
       {/* 10. Progress */}
-      <section className="space-y-6">
+      <section id="progress" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Progress</h2>
 
         <div className="max-w-sm space-y-4">
@@ -489,7 +455,7 @@ export function App() {
       <Separator />
 
       {/* 11. Skeleton */}
-      <section className="space-y-6">
+      <section id="skeleton" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Skeleton</h2>
 
         <div className="max-w-sm">
@@ -506,7 +472,7 @@ export function App() {
       <Separator />
 
       {/* 12. Slider */}
-      <section className="space-y-6">
+      <section id="slider" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Slider</h2>
 
         <div className="max-w-sm space-y-4">
@@ -536,7 +502,7 @@ export function App() {
       <Separator />
 
       {/* 13. Toast */}
-      <section className="space-y-6">
+      <section id="toast" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Toast</h2>
 
         <div className="flex flex-wrap items-center gap-3">
@@ -600,7 +566,7 @@ export function App() {
       <Separator />
 
       {/* 14. Radio Group */}
-      <section className="space-y-6">
+      <section id="radio-group" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Radio Group</h2>
 
         <RadioGroup defaultValue="comfortable" className="max-w-sm space-y-3">
@@ -649,7 +615,7 @@ export function App() {
       <Separator />
 
       {/* 15. Scroll Area */}
-      <section className="space-y-6">
+      <section id="scroll-area" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Scroll Area</h2>
 
         <div className="w-56">
@@ -672,7 +638,7 @@ export function App() {
       <Separator />
 
       {/* 16. Tabs */}
-      <section className="space-y-6">
+      <section id="tabs" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Tabs</h2>
 
         <div className="w-full max-w-sm space-y-3">
@@ -711,7 +677,7 @@ export function App() {
       <Separator />
 
       {/* 17. Dialog */}
-      <section className="space-y-6">
+      <section id="dialog" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Dialog</h2>
 
         <div className="flex flex-wrap items-center gap-4">
@@ -745,7 +711,7 @@ export function App() {
       <Separator />
 
       {/* 18. Drawer */}
-      <section className="space-y-6">
+      <section id="drawer" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Drawer</h2>
 
         <Drawer>
@@ -797,7 +763,7 @@ export function App() {
       <Separator />
 
       {/* 19. Table */}
-      <section className="space-y-6">
+      <section id="table" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Table</h2>
 
         <Table>
@@ -843,6 +809,258 @@ export function App() {
           </TableBody>
         </Table>
       </section>
+
+      <Separator />
+
+      {/* 20. Label */}
+      <section id="label" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Label</h2>
+
+        <div className="max-w-sm space-y-4">
+          <div className="space-y-1.5">
+            <Label htmlFor="username" required>
+              Username
+            </Label>
+            <Input id="username" placeholder="daviddong" />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Checkbox id="terms-agree" defaultChecked />
+            <Label htmlFor="terms-agree" className="cursor-pointer">
+              Accept terms and conditions
+            </Label>
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 21. Textarea */}
+      <section id="textarea" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Textarea</h2>
+
+        <div className="max-w-sm space-y-4">
+          <div className="space-y-1.5">
+            <Label htmlFor="message">Message</Label>
+            <Textarea id="message" placeholder="Type your message here..." />
+          </div>
+
+          <div className="space-y-1.5">
+            <Label htmlFor="auto-notes">Auto-resizing</Label>
+            <Textarea
+              id="auto-notes"
+              autoResize
+              placeholder="Expands smoothly as content grows..."
+            />
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 22. Field */}
+      <section id="field" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Field</h2>
+
+        <div className="max-w-sm space-y-4">
+          <Field>
+            <FieldLabel htmlFor="api-key" required>
+              API Token
+            </FieldLabel>
+            <Input id="api-key" placeholder="sec_live_..." />
+            <FieldDescription>
+              Used to authenticate server-to-server requests.
+            </FieldDescription>
+          </Field>
+
+          <Field orientation="horizontal">
+            <FieldContent>
+              <FieldLabel htmlFor="auto-deploy">Automatic Deploy</FieldLabel>
+              <FieldDescription>
+                Deploy every commit pushed to main.
+              </FieldDescription>
+            </FieldContent>
+            <Switch id="auto-deploy" defaultChecked />
+          </Field>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 23. Context Menu */}
+      <section id="context-menu" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Context Menu</h2>
+
+        <div className="max-w-sm">
+          <ContextMenu>
+            <ContextMenuTrigger className="flex h-20 items-center justify-center rounded-xl border border-border/80 bg-background/50 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-background/80 transition-colors cursor-default select-none shadow-[inset_0_1px_1.5px_0_color-mix(in_oklch,var(--foreground)_5%,transparent)]">
+              Right click here
+            </ContextMenuTrigger>
+            <ContextMenuContent>
+              <ContextMenuItem>
+                <span>Back</span>
+              </ContextMenuItem>
+              <ContextMenuItem>
+                <span>Forward</span>
+              </ContextMenuItem>
+              <ContextMenuItem>
+                <span>Reload</span>
+              </ContextMenuItem>
+              <ContextMenuSeparator />
+              <ContextMenuItem>
+                <span>Settings</span>
+              </ContextMenuItem>
+              <ContextMenuSeparator />
+              <ContextMenuItem variant="destructive">
+                <span>Delete</span>
+              </ContextMenuItem>
+            </ContextMenuContent>
+          </ContextMenu>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 24. Command */}
+      <section id="command" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Command</h2>
+
+        <div className="flex items-center">
+          <button
+            type="button"
+            onClick={() => setCommandOpen(true)}
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer select-none"
+          >
+            <span>Press</span>
+            <KbdGroup>
+              <Kbd>CMD</Kbd>
+              <span className="text-xs text-muted-foreground">+</span>
+              <Kbd>K</Kbd>
+            </KbdGroup>
+          </button>
+        </div>
+      </section>
+
+      <CommandDialog
+        open={commandOpen}
+        onOpenChange={setCommandOpen}
+        title="Component Registry"
+        description="Search registered components in the system"
+      >
+        <CommandInput placeholder="Search now..." />
+        <CommandList>
+          <CommandEmpty>No components found.</CommandEmpty>
+
+          <CommandGroup heading="Atoms">
+            <CommandItem onSelect={() => navigateTo("badge")}>
+              <ArrowRightIcon />
+              <span>Badge</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("button")}>
+              <ArrowRightIcon />
+              <span>Button</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("checkbox")}>
+              <ArrowRightIcon />
+              <span>Checkbox</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("input")}>
+              <ArrowRightIcon />
+              <span>Input</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("label")}>
+              <ArrowRightIcon />
+              <span>Label</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("progress")}>
+              <ArrowRightIcon />
+              <span>Progress</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("skeleton")}>
+              <ArrowRightIcon />
+              <span>Skeleton</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("slider")}>
+              <ArrowRightIcon />
+              <span>Slider</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("switch")}>
+              <ArrowRightIcon />
+              <span>Switch</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("textarea")}>
+              <ArrowRightIcon className="size-3.5" />
+              <span>Textarea</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("command")}>
+              <ArrowRightIcon className="size-3.5" />
+              <span>Kbd</span>
+            </CommandItem>
+          </CommandGroup>
+
+          <CommandSeparator />
+
+          <CommandGroup heading="Molecules">
+            <CommandItem onSelect={() => navigateTo("dropdown-menu")}>
+              <ArrowRightIcon />
+              <span>Dropdown Menu</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("select")}>
+              <ArrowRightIcon />
+              <span>Select</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("tooltip")}>
+              <ArrowRightIcon />
+              <span>Tooltip</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("radio-group")}>
+              <ArrowRightIcon />
+              <span>Radio Group</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("scroll-area")}>
+              <ArrowRightIcon />
+              <span>Scroll Area</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("tabs")}>
+              <ArrowRightIcon />
+              <span>Tabs</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("field")}>
+              <ArrowRightIcon />
+              <span>Field</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("context-menu")}>
+              <ArrowRightIcon />
+              <span>Context Menu</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("command")}>
+              <ArrowRightIcon />
+              <span>Command</span>
+            </CommandItem>
+          </CommandGroup>
+
+          <CommandSeparator />
+
+          <CommandGroup heading="Organisms">
+            <CommandItem onSelect={() => navigateTo("dialog")}>
+              <ArrowRightIcon />
+              <span>Dialog</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("drawer")}>
+              <ArrowRightIcon />
+              <span>Drawer</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("table")}>
+              <ArrowRightIcon />
+              <span>Table</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("toast")}>
+              <ArrowRightIcon />
+              <span>Toast</span>
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
 
       <Toaster />
     </main>
