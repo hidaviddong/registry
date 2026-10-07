@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react"
 
+import {
+  Avatar,
+  AvatarBadge,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
+  AvatarImage,
+} from "~/components/ui/avatar.tsx"
 import { Badge } from "~/components/ui/badge.tsx"
 import { Button } from "~/components/ui/button.tsx"
 import {
@@ -161,6 +169,67 @@ export function App() {
           <Badge variant="outline">Outline</Badge>
           <Badge variant="warning">Warning</Badge>
           <Badge variant="destructive">Destructive</Badge>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 2. Avatar */}
+      <section id="avatar" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Avatar</h2>
+
+        <div className="flex flex-wrap items-center gap-4">
+          <Avatar>
+            <AvatarImage
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces"
+              alt="Avatar"
+            />
+            <AvatarFallback>DD</AvatarFallback>
+          </Avatar>
+
+          <Avatar>
+            <AvatarFallback>DD</AvatarFallback>
+          </Avatar>
+
+          <Avatar>
+            <AvatarFallback>
+              <UserIcon />
+            </AvatarFallback>
+          </Avatar>
+
+          <Avatar>
+            <AvatarImage
+              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop&crop=face"
+              alt="Avatar"
+            />
+            <AvatarFallback>DD</AvatarFallback>
+            <AvatarBadge status="online" />
+          </Avatar>
+
+          <AvatarGroup>
+            <Avatar>
+              <AvatarImage
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces"
+                alt="User 1"
+              />
+              <AvatarFallback>U1</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarImage
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+                alt="User 2"
+              />
+              <AvatarFallback>U2</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarImage
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop&crop=face"
+                alt="User 3"
+              />
+              <AvatarFallback>U3</AvatarFallback>
+            </Avatar>
+            <AvatarGroupCount>+3</AvatarGroupCount>
+          </AvatarGroup>
         </div>
       </section>
 
@@ -949,6 +1018,10 @@ export function App() {
           <CommandEmpty>No components found.</CommandEmpty>
 
           <CommandGroup heading="Atoms">
+            <CommandItem onSelect={() => navigateTo("avatar")}>
+              <ArrowRightIcon />
+              <span>Avatar</span>
+            </CommandItem>
             <CommandItem onSelect={() => navigateTo("badge")}>
               <ArrowRightIcon />
               <span>Badge</span>

@@ -212,6 +212,23 @@
                     "type": "registry:ui"
                 }
             ]
+        },
+        {
+            "name": "avatar",
+            "type": "registry:ui",
+            "title": "Avatar",
+            "description": "A refined, skeuomorphic Avatar component with tactile depth and status indicators built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "class-variance-authority",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/avatar.tsx",
+                    "type": "registry:ui"
+                }
+            ]
         }
     ]
 }
