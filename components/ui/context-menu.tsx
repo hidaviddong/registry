@@ -55,16 +55,13 @@ function ContextMenuContent({
         <ContextMenuPrimitive.Popup
           data-slot="context-menu-content"
           className={cn(
-            // 基础面板尺寸与排版
             "z-50 min-w-44 overflow-hidden rounded-xl p-1 text-sm select-none outline-none",
 
-            // 现代高级微浮雕面板：通透磨砂底色 + 多层空气漫反射深邃阴影 + 顶部极细微反光倒角 + 双层微轮廓
             "border border-border/80 bg-background/90 backdrop-blur-md supports-[backdrop-filter]:bg-background/85 text-foreground",
             "ring-1 ring-black/[0.04] dark:ring-white/[0.08]",
             "shadow-[0_16px_36px_-6px_rgba(0,0,0,0.12),0_4px_14px_-2px_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.04),inset_0_1px_0_0_rgba(255,255,255,0.95)]",
             "dark:shadow-[0_20px_48px_-8px_rgba(0,0,0,0.7),0_4px_16px_-2px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.1),inset_0_1px_0_0_rgba(255,255,255,0.15)]",
 
-            // 动效：基于 transform-origin 的极速弹性质感展开
             "origin-[var(--transform-origin)] transition-[opacity,transform] duration-140 ease-[cubic-bezier(0.16,1,0.3,1)]",
             "data-[starting-style]:opacity-0 data-[starting-style]:scale-95",
             "data-[ending-style]:opacity-0 data-[ending-style]:scale-95",
@@ -97,26 +94,22 @@ function ContextMenuItem({
       data-slot="context-menu-item"
       data-variant={variant}
       className={cn(
-        // 紧凑利落的菜单项排版与微触感回弹
         "group relative flex h-8 items-center gap-2.5 rounded-lg px-2.5 text-sm font-normal outline-none select-none cursor-pointer",
         "transition-all duration-75 active:scale-[0.985]",
         inset && "pl-8",
 
-        // 默认项：干净纯正且带微通透的 Muted 交互反馈
         variant === "default" && [
           "text-foreground/90",
           "data-[highlighted]:bg-muted/80 data-[highlighted]:text-foreground",
           "[&_svg]:text-muted-foreground [&_svg]:transition-colors group-data-[highlighted]:[&_svg]:text-foreground",
         ],
 
-        // 危险项（严格对齐设计系统 var(--destructive) 色值，与 Button / Badge 完全一致）
         variant === "destructive" && [
           "text-destructive",
           "data-[highlighted]:bg-destructive/10 data-[highlighted]:text-destructive",
           "[&_svg]:text-destructive [&_svg]:transition-colors group-data-[highlighted]:[&_svg]:text-destructive",
         ],
 
-        // 禁用状态
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-40",
         "[&_svg]:size-4 [&_svg]:shrink-0",
         className
@@ -214,16 +207,13 @@ function ContextMenuSubContent({
         <ContextMenuPrimitive.Popup
           data-slot="context-menu-sub-content"
           className={cn(
-            // 基础面板尺寸与排版
             "z-50 min-w-40 overflow-hidden rounded-xl p-1 text-sm select-none outline-none",
 
-            // 现代高级微浮雕面板
             "border border-border/80 bg-background/90 backdrop-blur-md supports-[backdrop-filter]:bg-background/85 text-foreground",
             "ring-1 ring-black/[0.04] dark:ring-white/[0.08]",
             "shadow-[0_16px_36px_-6px_rgba(0,0,0,0.12),0_4px_14px_-2px_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.04),inset_0_1px_0_0_rgba(255,255,255,0.95)]",
             "dark:shadow-[0_20px_48px_-8px_rgba(0,0,0,0.7),0_4px_16px_-2px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.1),inset_0_1px_0_0_rgba(255,255,255,0.15)]",
 
-            // 动效：基于 transform-origin 的极速弹性质感展开
             "origin-[var(--transform-origin)] transition-[opacity,transform] duration-140 ease-[cubic-bezier(0.16,1,0.3,1)]",
             "data-[starting-style]:opacity-0 data-[starting-style]:scale-95",
             "data-[ending-style]:opacity-0 data-[ending-style]:scale-95",
@@ -267,7 +257,6 @@ function ContextMenuSeparator({
     <ContextMenuPrimitive.Separator
       data-slot="context-menu-separator"
       className={cn(
-        // 两端羽化渐隐微分割线
         "-mx-1 my-1 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent",
         className
       )}

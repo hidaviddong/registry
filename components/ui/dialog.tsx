@@ -147,7 +147,6 @@ function DialogContent({
 }: DialogContentProps) {
   const { isOpen, setIsOpen } = React.useContext(DialogContext)
 
-  // 监听 Escape 键自动关闭
   React.useEffect(() => {
     if (!isOpen) return
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -159,7 +158,6 @@ function DialogContent({
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [isOpen, setIsOpen])
 
-  // 打开时锁定 body 滚动，防止背景抖动
   React.useEffect(() => {
     if (!isOpen) return
     const originalOverflow = document.body.style.overflow
@@ -174,7 +172,6 @@ function DialogContent({
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* 背景磨砂压暗遮罩 */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -184,7 +181,6 @@ function DialogContent({
               className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs"
             />
 
-            {/* 居中物理弹窗容器 */}
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
               <motion.div
                 initial={{ opacity: 0, scale: 0.96, y: 8 }}
@@ -202,7 +198,6 @@ function DialogContent({
                 )}
                 {...props}
               >
-                {/* 顶部右侧关闭按钮 */}
                 {showCloseButton && (
                   <button
                     type="button"
@@ -214,7 +209,6 @@ function DialogContent({
                   </button>
                 )}
 
-                {/* 弹窗主体内容迅速淡入 */}
                 <motion.div
                   initial={{ opacity: 0, y: 3 }}
                   animate={{ opacity: 1, y: 0 }}

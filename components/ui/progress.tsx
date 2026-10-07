@@ -113,7 +113,6 @@ function ProgressTrack({
     <ProgressPrimitive.Track
       data-slot="progress-track"
       className={cn(
-        // 拟物微内凹轨道底座（与 Switch、Input 轨道完全统一）
         "relative flex w-full items-center overflow-hidden rounded-full select-none",
         "bg-muted ring-1 ring-border/80",
         "shadow-[inset_0_1px_1.5px_0_color-mix(in_oklch,var(--foreground)_8%,transparent)]",
@@ -143,10 +142,8 @@ function ProgressIndicator({
     <ProgressPrimitive.Indicator
       data-slot="progress-indicator"
       className={cn(
-        // 核心进度条：顶部微高光 + 悬浮拟物投影 + 流畅缓动
         "h-full rounded-full transition-[width] duration-300 ease-out",
         indicatorVariantClasses[variant],
-        // 不确定进度动画（indeterminate）
         "data-indeterminate:w-1/3 data-indeterminate:animate-[progress-indeterminate_1.5s_infinite_ease-in-out] data-indeterminate:will-change-transform",
         className
       )}

@@ -299,7 +299,6 @@ export function App() {
         <h2 className="text-2xl font-semibold tracking-tight">Separator</h2>
 
         <div className="space-y-6 max-w-sm">
-          {/* 1. 两端羽化渐隐线（Linear / Vercel 光学微刻痕） */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span>Faded Gradient</span>
@@ -308,10 +307,8 @@ export function App() {
             <Separator />
           </div>
 
-          {/* 2. 业务高频带文字分割线 */}
           <Separator>OR</Separator>
 
-          {/* 3. 垂直羽化分割条 */}
           <div className="flex h-5 items-center justify-center gap-4 text-xs text-muted-foreground">
             <span className="hover:text-foreground cursor-pointer">Preview</span>
             <Separator orientation="vertical" />

@@ -23,7 +23,6 @@ const sizeConfig = {
     horizontal: "h-1.5 p-px",
   },
   default: {
-    // 默认精致 8px 宽轨道，两侧各 1px 边距，滑块宽 6px，宽度恒定不形变
     vertical: "w-2 p-[1px]",
     horizontal: "h-2 p-[1px]",
   },
@@ -34,11 +33,8 @@ const sizeConfig = {
 } as const
 
 const visibilityClasses: Record<ScrollAreaVisibility, string> = {
-  // auto: 默认清晰微显（opacity-70），触碰或滚动时完全点亮（opacity-100）
   auto: "opacity-70 transition-opacity duration-150 ease-out hover:opacity-100 group-hover/scroll-area:opacity-100 data-[hovering]:opacity-100 data-[scrolling]:opacity-100",
-  // hover: 平时隐藏，鼠标悬停或滚动时优雅淡入
   hover: "opacity-0 transition-opacity duration-150 ease-out group-hover/scroll-area:opacity-100 data-[hovering]:opacity-100 data-[scrolling]:opacity-100",
-  // always: 始终 100% 显示
   always: "opacity-100",
 }
 
@@ -96,7 +92,6 @@ function ScrollArea({
 function ScrollAreaMask({ className }: { className?: string }) {
   return (
     <>
-      {/* 顶部溢出边缘渐隐遮罩 */}
       <div
         aria-hidden="true"
         data-slot="scroll-area-mask-top"
@@ -108,7 +103,6 @@ function ScrollAreaMask({ className }: { className?: string }) {
           className
         )}
       />
-      {/* 底部溢出边缘渐隐遮罩 */}
       <div
         aria-hidden="true"
         data-slot="scroll-area-mask-bottom"
@@ -152,9 +146,7 @@ function ScrollBar({
         "flex touch-none select-none z-20 transition-opacity duration-150 ease-out",
         visibilityClasses[visibility],
         isVertical ? "h-full flex-col" : "w-full flex-row",
-        // 宽度严格固定，绝无 hover 膨胀变形
         isVertical ? sizeConfig[size].vertical : sizeConfig[size].horizontal,
-        // 微底槽背景
         "rounded-full bg-black/[0.03] hover:bg-black/[0.06] dark:bg-white/[0.04] dark:hover:bg-white/[0.08]",
         className
       )}
@@ -172,7 +164,6 @@ function ScrollBar({
           aria-hidden="true"
           className={cn(
             "pointer-events-none block size-full rounded-full transition-colors duration-150",
-            // 现代拟物微浮雕药丸滑块：纯净克制 + 顶部微高光 + 细柔投影
             "bg-foreground/45 hover:bg-foreground/70 active:bg-foreground/85",
             "ring-1 ring-black/10 dark:ring-white/20",
             "shadow-[0_1px_2px_rgba(0,0,0,0.1),inset_0_1px_0_0_rgba(255,255,255,0.6)] dark:shadow-[0_1px_2px_rgba(0,0,0,0.35),inset_0_1px_0_0_rgba(255,255,255,0.2)]"

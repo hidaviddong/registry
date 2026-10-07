@@ -8,11 +8,9 @@ const labelVariants = cva(
   [
     "inline-flex items-center gap-1.5 font-medium select-none",
     "transition-colors duration-150 ease-out motion-reduce:transition-none",
-    // 禁用穿透与联动
     "group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50",
     "peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
     "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[disabled=true]:cursor-not-allowed",
-    // 校验警示联动
     "peer-aria-invalid:text-destructive",
     "group-data-[invalid=true]:text-destructive",
   ].join(" "),
@@ -39,13 +37,9 @@ const labelVariants = cva(
 interface LabelProps
   extends React.ComponentProps<"label">,
     VariantProps<typeof labelVariants> {
-  // 必填标记（视觉强调但对辅助技术隐藏，保证无障碍体验）
   required?: boolean
-  // 选填提示标记
   optional?: boolean | React.ReactNode
-  // 禁用状态
   disabled?: boolean
-  // 紧凑辅助说明文字
   description?: React.ReactNode
 }
 

@@ -18,7 +18,6 @@ const rawToastManager = ToastPrimitive.createToastManager()
 
 type ToastOptions = Omit<Parameters<typeof rawToastManager.add>[0], "title">
 
-// 简洁直观的指令式 API（兼容 Sonner 调用习惯）
 function toast(title: React.ReactNode, options?: ToastOptions) {
   return rawToastManager.add({
     title,
@@ -72,7 +71,6 @@ function Toast({ className, ...props }: ToastPrimitive.Root.Props) {
     <ToastPrimitive.Root
       data-slot="toast"
       className={cn(
-        // 核心堆叠层级与手势滑动
         "group/toast pointer-events-auto absolute right-0 bottom-0 z-[calc(1000-var(--toast-index))] w-full origin-bottom select-none outline-none will-change-transform",
         "[--gap:0.75rem] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))] [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.08)))] [--shrink:calc(1-var(--scale))]",
         "h-(--height) [transform:translateX(var(--toast-swipe-movement-x))_translateY(calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--peek))-(var(--shrink)*var(--height))))_scale(var(--scale))] [transition:transform_400ms_cubic-bezier(0.22,1,0.36,1),opacity_300ms,height_150ms]",
@@ -89,7 +87,6 @@ function Toast({ className, ...props }: ToastPrimitive.Root.Props) {
         "data-expanded:data-ending-style:data-[swipe-direction=right]:[transform:translateX(calc(var(--toast-swipe-movement-x)+150%))_translateY(var(--offset-y))]",
         "data-expanded:data-ending-style:data-[swipe-direction=up]:[transform:translateY(calc(var(--toast-swipe-movement-y)-150%))]",
 
-        // 纯净克制的高级微浮雕面板（与系统 Dropdown / Select 面板一致）
         "rounded-xl border border-border/80 bg-background text-foreground",
         "shadow-[0_12px_32px_-4px_color-mix(in_oklch,var(--foreground)_8%,transparent),0_4px_12px_-2px_color-mix(in_oklch,var(--foreground)_5%,transparent),0_0_0_1px_color-mix(in_oklch,var(--foreground)_4%,transparent),inset_0_1px_0_0_color-mix(in_oklch,var(--background)_80%,transparent)]",
         className

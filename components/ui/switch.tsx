@@ -40,21 +40,17 @@ function Switch({
       data-slot="switch"
       data-size={size}
       className={cn(
-        // 基础轨道外观与微交互
         "peer group/switch relative inline-flex shrink-0 items-center justify-start rounded-full p-0.5 outline-none select-none cursor-pointer",
         "transition-[color,background-color,border-color,box-shadow] duration-150 ease-[cubic-bezier(0.25,1,0.5,1)]",
         "focus-visible:ring-3 focus-visible:ring-ring/50",
         "disabled:cursor-not-allowed disabled:opacity-40",
 
-        // 尺寸模数
         config.track,
 
-        // 未选中轨道（未打开：默认浅灰内凹，Hover 时微暗反馈）
         "bg-muted ring-1 ring-border/80",
         "shadow-[inset_0_1px_1.5px_0_color-mix(in_oklch,var(--foreground)_8%,transparent)]",
         "hover:bg-[color-mix(in_oklch,var(--muted)_92%,var(--foreground))] hover:ring-[color-mix(in_oklch,var(--border)_88%,var(--foreground))]",
 
-        // 选中轨道（已打开：点亮主色，不受未选中加深影响）
         "data-checked:bg-primary data-checked:ring-primary/80",
         "data-checked:hover:bg-[color-mix(in_oklch,var(--primary)_92%,black)] data-checked:hover:ring-primary/90",
         "data-checked:shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.25),0_1px_2px_0_color-mix(in_oklch,var(--primary)_25%,transparent)]",
@@ -71,14 +67,12 @@ function Switch({
           return (
             <motion.span
               {...thumbProps}
-              // 彻底禁止键盘焦点停留（消除 Tab 键误停在小球上的恶心 Bug）
               tabIndex={-1}
               aria-hidden="true"
               className={cn(
                 "pointer-events-none block rounded-full ring-1 ring-black/8",
                 "bg-gradient-to-b from-white to-neutral-50/90",
                 config.thumb,
-                // 悬浮立体物理投影
                 "shadow-[0_2px_2px_-1px_rgba(0,0,0,0.12),0_4px_4px_-2px_rgba(0,0,0,0.08)]",
                 isChecked && "shadow-[0_1px_2px_rgba(0,0,0,0.18)]"
               )}

@@ -13,28 +13,22 @@ function Checkbox({
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
-        // 基础尺寸与排版
         "peer size-4 shrink-0 rounded-[4px] border outline-none select-none",
         "transition-[color,background-color,border-color,box-shadow,transform] duration-150 ease-out",
         "active:not-disabled:scale-[0.95]",
 
-        // 未选中态：白净拟物小键槽（顶部内高光 + 接地微柔和阴影）
         "border-border bg-linear-to-b from-card to-muted/40",
         "shadow-[0_1px_2px_0_color-mix(in_oklch,var(--foreground)_5%,transparent),inset_0_1px_0_0_color-mix(in_oklch,var(--background)_80%,transparent)]",
 
-        // 聚焦状态
         "focus-visible:border-ring focus-visible:ring-[2.5px] focus-visible:ring-ring/40",
 
-        // 选中态：Button 同款拟物高光与深蓝微投影
         "data-checked:border-[color-mix(in_oklch,var(--primary),black_24%)]",
         "data-checked:bg-linear-to-b data-checked:from-[color-mix(in_oklch,var(--primary),white_10%)] data-checked:to-[color-mix(in_oklch,var(--primary),black_8%)]",
         "data-checked:text-primary-foreground",
         "data-checked:shadow-[0_1px_2px_0_color-mix(in_oklch,var(--primary)_25%,transparent),0_2px_4px_0_color-mix(in_oklch,var(--primary)_18%,transparent),inset_0_1px_0_0_oklch(1_0_0/0.35),inset_0_-1.5px_2px_0_oklch(0_0_0/0.15)]",
 
-        // 禁用状态
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none disabled:active:scale-100",
 
-        // 错误状态
         "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
 
         className

@@ -42,7 +42,6 @@ function CommandDialog({
   children,
   className,
 }: CommandDialogProps) {
-  // ESC 键监听
   React.useEffect(() => {
     if (!open) return
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -54,7 +53,6 @@ function CommandDialog({
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [open, onOpenChange])
 
-  // 锁定背景滚动
   React.useEffect(() => {
     if (!open) return
     const prev = document.body.style.overflow
@@ -70,7 +68,6 @@ function CommandDialog({
     <AnimatePresence>
       {open && (
         <>
-          {/* 背景磨砂透气压暗遮罩 */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -80,7 +77,6 @@ function CommandDialog({
             className="fixed inset-0 z-50 bg-black/35 backdrop-blur-[2px]"
           />
 
-          {/* Linear 风格：顶部略微下沉悬浮 (Spotlight 物理位置) */}
           <div className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-[12vh] sm:pt-[14vh] pointer-events-none">
             <motion.div
               initial={{ opacity: 0, scale: 0.98, y: -8 }}
@@ -127,7 +123,6 @@ const CommandInput = React.forwardRef<
 
   React.useImperativeHandle(forwardedRef, () => innerRef.current!)
 
-  // 弹窗开启时即刻聚焦搜索框，彻底消除需要按 Tab 或鼠标点击的问题
   React.useEffect(() => {
     if (autoFocus) {
       const raf = requestAnimationFrame(() => {

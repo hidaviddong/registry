@@ -17,7 +17,6 @@ const mutedSurface =
 const destructiveSurface =
   "before:[background:linear-gradient(#ffffff1f,#fff0_50%)_padding-box,linear-gradient(color-mix(in_oklch,var(--destructive),white_8%),color-mix(in_oklch,var(--destructive),black_8%))_padding-box,linear-gradient(color-mix(in_oklch,var(--destructive),white_28%),var(--destructive),color-mix(in_oklch,var(--destructive),black_20%))_border-box] before:shadow-[0_0_0_1px_color-mix(in_oklch,var(--destructive),black_28%),inset_0_-2px_4px_-2px_color-mix(in_oklch,var(--destructive),transparent_72%),0_1px_1px_color-mix(in_oklch,var(--destructive),transparent_82%),0_2px_4px_color-mix(in_oklch,var(--destructive),transparent_78%)]"
 
-// 纯正微亮阳光橘（Tangerine / Orange）—— 晶莹透亮、鲜活发光、白字对比度完美
 const warningSurface =
   "before:[background:linear-gradient(#ffffff38,#fff0_50%)_padding-box,linear-gradient(oklch(73%_0.22_54),oklch(64%_0.225_50))_padding-box,linear-gradient(oklch(84%_0.20_55),oklch(68%_0.22_52),oklch(50%_0.21_48))_border-box] before:shadow-[0_0_0_1px_oklch(46%_0.20_48),inset_0_-2px_4px_-2px_oklch(30%_0.15_48_/_0.4),0_1px_1px_oklch(62%_0.2_50_/_0.22),0_2px_4px_oklch(62%_0.2_50_/_0.3)]"
 

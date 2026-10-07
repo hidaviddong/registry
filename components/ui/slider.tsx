@@ -170,7 +170,6 @@ function SliderTrack({
     <SliderPrimitive.Track
       data-slot="slider-track"
       className={cn(
-        // 拟物微沉降凹槽轨道（与 Switch / Input 对齐）
         "relative grow overflow-hidden rounded-full select-none",
         "bg-muted ring-1 ring-border/80",
         "shadow-[inset_0_1px_1.5px_0_color-mix(in_oklch,var(--foreground)_8%,transparent)]",
@@ -204,7 +203,6 @@ function SliderIndicator({
     <SliderPrimitive.Indicator
       data-slot="slider-indicator"
       className={cn(
-        // 核心亮色激活轨道：高光 + 拟物投影
         "rounded-full select-none",
         "data-horizontal:h-full data-vertical:w-full",
         indicatorVariantClasses[variant],
@@ -236,14 +234,10 @@ function SliderThumb({
     <SliderPrimitive.Thumb
       data-slot="slider-thumb"
       className={cn(
-        // 外层作为 Base UI 的绝对定位与输入焦点宿主
         "relative block shrink-0 select-none outline-none cursor-grab active:cursor-grabbing",
         config.thumb,
-        // 聚焦态微光圈
         "focus-visible:ring-3 focus-visible:ring-ring/50",
-        // 触控热区扩展
         "after:absolute after:-inset-2 after:content-['']",
-        // 禁用态
         "disabled:pointer-events-none disabled:opacity-40 disabled:shadow-none",
         className
       )}
@@ -261,7 +255,6 @@ function SliderThumb({
         const isAtMax = currentValue >= max
         const isVertical = state.orientation === "vertical"
 
-        // 到两端（0% 与 100%）时的物理碰撞形变：对齐 Switch 的弹簧惯性与微形变手感
         const boundaryX = isAtMin ? -1.75 : isAtMax ? 1.75 : 0
         const boundaryY = isAtMin ? 1.75 : isAtMax ? -1.75 : 0
         const squishScaleParallel = isAtMin || isAtMax ? 0.88 : 1
@@ -282,7 +275,6 @@ function SliderThumb({
 
         return (
           <div {...thumbProps}>
-            {/* 动态浮动数值气泡：拖拽交互时弹性浮现 (Motion AnimatePresence) */}
             <AnimatePresence>
               {showTooltip && isDragging && (
                 <motion.div
@@ -302,23 +294,18 @@ function SliderThumb({
                   className="pointer-events-none absolute -top-1 left-1/2 -translate-x-1/2 z-30 flex items-center justify-center rounded-md bg-foreground px-1.5 py-0.5 text-[10px] font-mono font-medium text-background shadow-md select-none"
                 >
                   <span>{currentValue}</span>
-                  {/* 微倒三角 */}
                   <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-x-[3.5px] border-t-[4px] border-x-transparent border-t-foreground" />
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {/* 核心物理拟物按键碟面：使用 Switch 同款 Spring 物理弹簧（stiffness: 580, damping: 32, mass: 0.8） */}
             <motion.span
               tabIndex={-1}
               aria-hidden="true"
               className={cn(
                 "pointer-events-none block size-full rounded-full",
-                // 双层外边框与白净微渐变
                 "bg-gradient-to-b from-white to-neutral-50/95 ring-1 ring-black/10 dark:ring-white/20",
-                // 悬浮物理立体微阴影 + 顶部白光
                 "shadow-[0_1.5px_3px_0_rgba(0,0,0,0.12),0_1px_1px_0_rgba(0,0,0,0.08),inset_0_1px_0_0_rgba(255,255,255,0.95)]",
-                // 达到最右端(max)时与 Switch 开关选中的沉稳接地投影对齐
                 isAtMax && "shadow-[0_1px_2px_rgba(0,0,0,0.18)]"
               )}
               animate={{

@@ -72,7 +72,6 @@ const tabsListVariants = cva(
     variants: {
       variant: {
         default: cn(
-          // 拟物微沉降凹槽轨道底座（与 Switch、Slider、Progress 轨道严格对齐）
           "bg-muted ring-1 ring-border/80 rounded-lg p-[3px]",
           "shadow-[inset_0_1px_1.5px_0_color-mix(in_oklch,var(--foreground)_8%,transparent)]"
         ),
@@ -189,7 +188,6 @@ function TabsTrigger({
               mass: 0.8,
             }}
           >
-            {/* 拟物高光浮雕碟面滑块（与 Slider/Switch 统一的实体质感） */}
             {variant === "default" && isActive && (
               <motion.span
                 layoutId={layoutId}
@@ -208,7 +206,6 @@ function TabsTrigger({
               />
             )}
 
-            {/* 下划线激活指示器 */}
             {variant === "line" && isActive && (
               <motion.span
                 layoutId={layoutId}
