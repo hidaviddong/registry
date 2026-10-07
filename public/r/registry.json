@@ -184,7 +184,7 @@
             "title": "Drawer",
             "description": "A refined, tactile Drawer component with directional swipe gestures and snap points built with Base UI.",
             "registryDependencies": [
-                "button"
+                "@daviddong/button"
             ],
             "dependencies": [
                 "@base-ui/react",

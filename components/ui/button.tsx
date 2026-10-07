@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { AnimatePresence, motion } from "motion/react"
 import { cn } from "cn"
 
-import { Spinner } from "./spinner.tsx"
+import { Spinner } from "./spinner"
 
 const surface =
   "border-0 bg-transparent before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:border-transparent before:transition-[box-shadow,opacity] before:duration-100 before:ease-out before:content-[''] after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:border after:border-transparent after:opacity-0 after:transition-opacity after:duration-150 after:ease-out after:content-[''] hover:after:opacity-100 motion-reduce:before:transition-none motion-reduce:after:transition-none"
