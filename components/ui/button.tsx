@@ -99,7 +99,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       style={style}
       render={(buttonProps) => (
         <motion.button
-          {...buttonProps}
+          {...(buttonProps as React.ComponentProps<typeof motion.button>)}
           whileTap={
             disabled || loading
               ? undefined
