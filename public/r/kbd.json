@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd",
+  "title": "Kbd",
+  "description": "A compact keyboard key indicator with size variants and grouping support.",
+  "dependencies": [
+    "class-variance-authority",
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "components/ui/kbd.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"cn\"\n\nconst kbdVariants = cva(\n  [\n    \"inline-flex w-fit items-center justify-center gap-1 font-sans font-medium select-none pointer-events-none\",\n    \"transition-colors duration-100\",\n\n    \"rounded-md border border-border/80 border-b-[1.5px] border-b-border\",\n    \"bg-background text-muted-foreground\",\n    \"shadow-[0_1px_1.5px_0_color-mix(in_oklch,var(--foreground)_6%,transparent),inset_0_1px_0_0_color-mix(in_oklch,var(--background)_80%,transparent)]\",\n\n    \"group-data-[highlighted]:border-border group-data-[highlighted]:text-foreground\",\n    \"group-data-[selected=true]:border-border group-data-[selected=true]:text-foreground\",\n\n    \"group-data-[variant=destructive]:group-data-[highlighted]:bg-background\",\n    \"group-data-[variant=destructive]:group-data-[highlighted]:border-destructive/30\",\n    \"group-data-[variant=destructive]:group-data-[highlighted]:border-b-destructive/50\",\n    \"group-data-[variant=destructive]:group-data-[highlighted]:text-destructive\",\n    \"group-data-[variant=destructive]:group-data-[highlighted]:shadow-[0_1px_2px_0_color-mix(in_oklch,var(--destructive)_15%,transparent)]\",\n\n    \"[&_svg]:pointer-events-none [&_svg]:shrink-0\",\n  ].join(\" \"),\n  {\n    variants: {\n      size: {\n        default: \"h-6 min-w-6 px-2 text-xs font-semibold [&_svg]:size-3.5\",\n        sm: \"h-5 min-w-5 px-1.5 text-xs font-medium [&_svg]:size-3\",\n        lg: \"h-7 min-w-7 px-2.5 text-sm font-semibold [&_svg]:size-4\",\n      },\n    },\n    defaultVariants: {\n      size: \"default\",\n    },\n  }\n)\n\ninterface KbdProps\n  extends React.ComponentProps<\"kbd\">,\n    VariantProps<typeof kbdVariants> {}\n\nfunction Kbd({ className, size = \"default\", ...props }: KbdProps) {\n  return (\n    <kbd\n      data-slot=\"kbd\"\n      className={cn(kbdVariants({ size }), className)}\n      {...props}\n    />\n  )\n}\n\nfunction KbdGroup({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"kbd-group\"\n      className={cn(\"inline-flex items-center gap-1 select-none\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Kbd, KbdGroup, kbdVariants, type KbdProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

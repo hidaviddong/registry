@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "title": "Separator",
+  "description": "A visual separator component built with Base UI.",
+  "dependencies": [
+    "@base-ui/react",
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "components/ui/separator.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Separator as SeparatorPrimitive } from \"@base-ui/react/separator\"\nimport { cn } from \"cn\"\n\ninterface SeparatorProps\n  extends React.ComponentProps<typeof SeparatorPrimitive> {\n  variant?: \"default\" | \"gradient\"\n  children?: React.ReactNode\n}\n\nfunction Separator({\n  className,\n  orientation = \"horizontal\",\n  variant = \"gradient\",\n  children,\n  ...props\n}: SeparatorProps) {\n  if (children && orientation === \"horizontal\") {\n    return (\n      <div\n        className={cn(\n          \"flex w-full items-center gap-3 select-none text-xs text-muted-foreground\",\n          className\n        )}\n      >\n        <div className=\"h-px flex-1 bg-gradient-to-r from-transparent via-border to-border\" />\n        <span className=\"shrink-0 font-medium\">{children}</span>\n        <div className=\"h-px flex-1 bg-gradient-to-l from-transparent via-border to-border\" />\n      </div>\n    )\n  }\n\n  return (\n    <SeparatorPrimitive\n      data-slot=\"separator\"\n      orientation={orientation}\n      className={cn(\n        \"shrink-0 select-none\",\n        \"data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full\",\n        \"data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-4 data-[orientation=vertical]:w-px\",\n        variant === \"gradient\" && [\n          \"data-[orientation=horizontal]:bg-gradient-to-r data-[orientation=horizontal]:from-transparent data-[orientation=horizontal]:via-foreground/15 data-[orientation=horizontal]:to-transparent\",\n          \"data-[orientation=vertical]:bg-gradient-to-b data-[orientation=vertical]:from-transparent data-[orientation=vertical]:via-foreground/15 data-[orientation=vertical]:to-transparent\",\n        ],\n        variant === \"default\" && \"bg-border\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Separator }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

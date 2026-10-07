@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "title": "Label",
+  "description": "A form label with variants and supporting description text.",
+  "dependencies": [
+    "class-variance-authority",
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "components/ui/label.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"cn\"\n\nconst labelVariants = cva(\n  [\n    \"inline-flex items-center gap-1.5 font-medium select-none\",\n    \"transition-colors duration-150 ease-out motion-reduce:transition-none\",\n    \"group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50\",\n    \"peer-disabled:cursor-not-allowed peer-disabled:opacity-50\",\n    \"data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[disabled=true]:cursor-not-allowed\",\n    \"peer-aria-invalid:text-destructive\",\n    \"group-data-[invalid=true]:text-destructive\",\n  ].join(\" \"),\n  {\n    variants: {\n      variant: {\n        default: \"text-foreground\",\n        muted: \"text-muted-foreground\",\n        destructive: \"text-destructive\",\n      },\n      size: {\n        sm: \"text-xs leading-none\",\n        default: \"text-sm leading-none\",\n        lg: \"text-base leading-none\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n)\n\ninterface LabelProps\n  extends React.ComponentProps<\"label\">,\n    VariantProps<typeof labelVariants> {\n  required?: boolean\n  optional?: boolean | React.ReactNode\n  disabled?: boolean\n  description?: React.ReactNode\n}\n\nconst Label = React.forwardRef<HTMLLabelElement, LabelProps>(function Label(\n  {\n    className,\n    variant = \"default\",\n    size = \"default\",\n    required = false,\n    optional = false,\n    disabled = false,\n    description,\n    children,\n    ...props\n  },\n  ref\n) {\n  const labelElement = (\n    <label\n      ref={ref}\n      data-slot=\"label\"\n      data-disabled={disabled || undefined}\n      className={cn(labelVariants({ variant, size }), className)}\n      {...props}\n    >\n      {children}\n      {required && (\n        <span\n          aria-hidden=\"true\"\n          data-slot=\"label-required\"\n          className=\"text-destructive font-normal select-none\"\n        >\n          *\n        </span>\n      )}\n      {optional && (\n        <span\n          data-slot=\"label-optional\"\n          className=\"text-[11px] font-normal text-muted-foreground/70 select-none\"\n        >\n          {typeof optional === \"boolean\" ? \"(optional)\" : optional}\n        </span>\n      )}\n    </label>\n  )\n\n  if (description) {\n    return (\n      <div className=\"flex flex-col gap-1\">\n        {labelElement}\n        <span\n          data-slot=\"label-description\"\n          className=\"text-xs font-normal text-muted-foreground leading-normal\"\n        >\n          {description}\n        </span>\n      </div>\n    )\n  }\n\n  return labelElement\n})\n\nfunction LabelDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      data-slot=\"label-description\"\n      className={cn(\n        \"text-xs font-normal text-muted-foreground leading-normal\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Label, LabelDescription, labelVariants, type LabelProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

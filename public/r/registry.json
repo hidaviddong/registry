@@ -229,6 +229,223 @@
                     "type": "registry:ui"
                 }
             ]
+        },
+        {
+            "name": "badge",
+            "type": "registry:ui",
+            "title": "Badge",
+            "description": "A compact, tactile badge for labels, statuses, and metadata.",
+            "dependencies": [
+                "class-variance-authority",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/badge.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "checkbox",
+            "type": "registry:ui",
+            "title": "Checkbox",
+            "description": "A tactile Checkbox component built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "cn",
+                "motion"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/checkbox.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "command",
+            "type": "registry:ui",
+            "title": "Command",
+            "description": "A searchable command menu with animated dialog presentation.",
+            "dependencies": [
+                "@phosphor-icons/react",
+                "cmdk",
+                "cn",
+                "motion"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/command.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "context-menu",
+            "type": "registry:ui",
+            "title": "Context Menu",
+            "description": "A refined Context Menu component built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "@phosphor-icons/react",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/context-menu.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "dropdown-menu",
+            "type": "registry:ui",
+            "title": "Dropdown Menu",
+            "description": "A refined Dropdown Menu component built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "@phosphor-icons/react",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/dropdown-menu.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "field",
+            "type": "registry:ui",
+            "title": "Field",
+            "description": "Composable form field primitives for labels, descriptions, separators, and validation errors.",
+            "registryDependencies": [
+                "@daviddong/label",
+                "@daviddong/separator"
+            ],
+            "dependencies": [
+                "class-variance-authority",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/field.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "input",
+            "type": "registry:ui",
+            "title": "Input",
+            "description": "A tactile text input with a refined inset surface.",
+            "dependencies": [
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/input.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "kbd",
+            "type": "registry:ui",
+            "title": "Kbd",
+            "description": "A compact keyboard key indicator with size variants and grouping support.",
+            "dependencies": [
+                "class-variance-authority",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/kbd.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "label",
+            "type": "registry:ui",
+            "title": "Label",
+            "description": "A form label with variants and supporting description text.",
+            "dependencies": [
+                "class-variance-authority",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/label.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "separator",
+            "type": "registry:ui",
+            "title": "Separator",
+            "description": "A visual separator component built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/separator.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "switch",
+            "type": "registry:ui",
+            "title": "Switch",
+            "description": "A tactile animated Switch component built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "cn",
+                "motion"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/switch.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "textarea",
+            "type": "registry:ui",
+            "title": "Textarea",
+            "description": "A tactile multiline text input with configurable resize behavior.",
+            "dependencies": [
+                "class-variance-authority",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/textarea.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "tooltip",
+            "type": "registry:ui",
+            "title": "Tooltip",
+            "description": "A refined Tooltip component built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/tooltip.tsx",
+                    "type": "registry:ui"
+                }
+            ]
         }
     ]
 }
