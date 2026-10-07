@@ -12,7 +12,7 @@ import {
 } from "@phosphor-icons/react"
 import { cn } from "cn"
 
-import { Button } from "./button.tsx"
+import { Button } from "./button"
 
 const rawToastManager = ToastPrimitive.createToastManager()
 

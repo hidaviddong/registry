@@ -135,8 +135,7 @@ const tabItemSizeClasses: Record<TabsSize, string> = {
   lg: "h-full px-4 text-sm",
 }
 
-interface TabsTriggerProps
-  extends React.ComponentProps<typeof TabsPrimitive.Tab> {}
+type TabsTriggerProps = React.ComponentProps<typeof TabsPrimitive.Tab>
 
 function TabsTrigger({
   className,
@@ -173,7 +172,7 @@ function TabsTrigger({
 
         return (
           <motion.button
-            {...(tabProps as any)}
+            {...(tabProps as React.ComponentProps<typeof motion.button>)}
             whileTap={
               disabled
                 ? undefined
@@ -235,8 +234,7 @@ function TabsTrigger({
   )
 }
 
-interface TabsContentProps
-  extends React.ComponentProps<typeof TabsPrimitive.Panel> {}
+type TabsContentProps = React.ComponentProps<typeof TabsPrimitive.Panel>
 
 function TabsContent({ className, children, ...props }: TabsContentProps) {
   return (
@@ -248,7 +246,7 @@ function TabsContent({ className, children, ...props }: TabsContentProps) {
       )}
       render={(panelProps) => (
         <motion.div
-          {...(panelProps as any)}
+          {...(panelProps as React.ComponentProps<typeof motion.div>)}
           initial={{ opacity: 0, y: 4 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{

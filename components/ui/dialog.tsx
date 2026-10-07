@@ -2,11 +2,11 @@
 
 import * as React from "react"
 import { createPortal } from "react-dom"
-import { AnimatePresence, motion } from "motion/react"
+import { AnimatePresence, motion, type HTMLMotionProps } from "motion/react"
 import { type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
-import { buttonVariants } from "./button.tsx"
+import { buttonVariants } from "./button"
 
 function XIcon(props: React.ComponentProps<"svg">) {
   return (
@@ -82,7 +82,7 @@ function Dialog({
 interface DialogTriggerProps
   extends React.ComponentProps<"button">,
     VariantProps<typeof buttonVariants> {
-  render?: React.ReactElement
+  render?: React.ReactElement<React.ComponentProps<"button">>
 }
 
 function DialogTrigger({
@@ -124,18 +124,20 @@ function DialogTrigger({
   )
 }
 
-function DialogPortal({ children }: { children: React.ReactNode }) {
-  const [mounted, setMounted] = React.useState(false)
+const subscribeToMount = () => () => {}
 
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
+function DialogPortal({ children }: { children: React.ReactNode }) {
+  const mounted = React.useSyncExternalStore(
+    subscribeToMount,
+    () => true,
+    () => false
+  )
 
   if (!mounted) return null
   return createPortal(children, document.body)
 }
 
-interface DialogContentProps extends React.ComponentProps<"div"> {
+type DialogContentProps = HTMLMotionProps<"div"> & {
   showCloseButton?: boolean
 }
 
@@ -212,7 +214,7 @@ function DialogContent({
                 <motion.div
                   initial={{ opacity: 0, y: 3 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, duration: 0.06 }}
+                  exit={{ opacity: 0 }}
                   transition={{
                     duration: 0.1,
                     delay: 0.02,

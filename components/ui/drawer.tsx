@@ -5,7 +5,7 @@ import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer"
 import { type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
-import { buttonVariants } from "./button.tsx"
+import { buttonVariants } from "./button"
 
 type DrawerContextProps = {
   hasSnapPoints: boolean
