@@ -79,9 +79,9 @@ const tabsListVariants = cva(
         line: "gap-4 bg-transparent border-b border-border/80 rounded-none p-0",
       },
       size: {
-        sm: "h-7 text-xs",
-        default: "h-8.5 text-xs",
-        lg: "h-10 text-sm",
+        sm: "h-7.5 text-xs",
+        default: "h-9 text-sm",
+        lg: "h-10.5 text-sm",
       },
     },
     defaultVariants: {
@@ -132,8 +132,8 @@ function TabsList({
 
 const tabItemSizeClasses: Record<TabsSize, string> = {
   sm: "h-full px-2.5 text-xs",
-  default: "h-full px-3 text-xs",
-  lg: "h-full px-3.5 text-sm",
+  default: "h-full px-3.5 text-sm",
+  lg: "h-full px-4 text-sm",
 }
 
 interface TabsTriggerProps

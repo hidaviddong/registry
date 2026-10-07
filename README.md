@@ -23,8 +23,7 @@
 - [x] Tabs
 
 ### Organisms 
-- [ ] Card
-- [ ] Dialog
+- [x] Dialog
 - [ ] Drawer
 - [ ] Table
 

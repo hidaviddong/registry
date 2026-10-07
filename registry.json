@@ -161,6 +161,22 @@
                     "type": "registry:ui"
                 }
             ]
+        },
+        {
+            "name": "dialog",
+            "type": "registry:ui",
+            "title": "Dialog",
+            "description": "A refined, tactile Dialog component expanding from trigger origin with spring physics built with Motion.",
+            "dependencies": [
+                "cn",
+                "motion"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/dialog.tsx",
+                    "type": "registry:ui"
+                }
+            ]
         }
     ]
 }

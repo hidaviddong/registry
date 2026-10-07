@@ -2,7 +2,19 @@ import { useState } from "react"
 
 import { Badge } from "~/components/ui/badge.tsx"
 import { Button } from "~/components/ui/button.tsx"
-import { Checkbox } from "~/components/ui/checkbox.tsx"
+import {
+  Checkbox,
+} from "~/components/ui/checkbox.tsx"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "~/components/ui/dialog.tsx"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -675,6 +687,40 @@ export function App() {
               </p>
             </TabsContent>
           </Tabs>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 17. Dialog */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Dialog</h2>
+
+        <div className="flex flex-wrap items-center gap-4">
+          {/* Feedback Dialog */}
+          <Dialog>
+            <DialogTrigger>Feedback</DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Feedback</DialogTitle>
+                <DialogDescription>
+                  Tell us about your experience and how we can improve this design system.
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="space-y-3 py-1">
+                <div className="space-y-1">
+                  <label className="text-xs font-medium text-foreground">Thoughts</label>
+                  <Input placeholder="What do you think of this component?" />
+                </div>
+              </div>
+
+              <DialogFooter>
+                <DialogClose>Cancel</DialogClose>
+                <Button>Submit feedback</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       </section>
 
