@@ -24,8 +24,8 @@
 
 ### Organisms 
 - [x] Dialog
-- [ ] Drawer
-- [ ] Table
+- [x] Drawer
+- [x] Table
 
 ## How to use
 
