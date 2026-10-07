@@ -11,6 +11,10 @@ import {
 import { Badge } from "~/components/ui/badge.tsx"
 import { Button } from "~/components/ui/button.tsx"
 import {
+  ButtonGroup,
+  ButtonGroupText,
+} from "~/components/ui/button-group.tsx"
+import {
   Checkbox,
 } from "~/components/ui/checkbox.tsx"
 import {
@@ -44,6 +48,14 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu.tsx"
 import { Input } from "~/components/ui/input.tsx"
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+  InputGroupTextarea,
+} from "~/components/ui/input-group.tsx"
 import { Kbd, KbdGroup } from "~/components/ui/kbd.tsx"
 import {
   ArrowRightIcon,
@@ -109,6 +121,10 @@ import { Separator } from "~/components/ui/separator.tsx"
 import { Skeleton } from "~/components/ui/skeleton.tsx"
 import { Slider } from "~/components/ui/slider.tsx"
 import { Switch } from "~/components/ui/switch.tsx"
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "~/components/ui/toggle-group.tsx"
 import {
   Table,
   TableBody,
@@ -256,6 +272,31 @@ export function App() {
 
       <Separator />
 
+      <section id="button-group" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Button Group</h2>
+
+        <div className="flex flex-wrap items-start gap-4">
+          <ButtonGroup>
+            <Button variant="outline">Back</Button>
+            <Button variant="outline">Today</Button>
+            <Button variant="outline">Next</Button>
+          </ButtonGroup>
+
+          <ButtonGroup>
+            <ButtonGroupText>View</ButtonGroupText>
+            <Button variant="outline">List</Button>
+            <Button variant="outline">Grid</Button>
+          </ButtonGroup>
+
+          <ButtonGroup orientation="vertical">
+            <Button variant="outline">Move up</Button>
+            <Button variant="outline">Move down</Button>
+          </ButtonGroup>
+        </div>
+      </section>
+
+      <Separator />
+
       {/* 3. Checkbox */}
       <section id="checkbox" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Checkbox</h2>
@@ -363,6 +404,49 @@ export function App() {
 
       <Separator />
 
+      <section id="input-group" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Input Group</h2>
+
+        <div className="max-w-sm space-y-3">
+          <InputGroup>
+            <InputGroupAddon>
+              <MagnifyingGlassIcon />
+            </InputGroupAddon>
+            <InputGroupInput placeholder="Search..." />
+            <InputGroupAddon align="inline-end">
+              <Kbd size="sm">⌘ K</Kbd>
+            </InputGroupAddon>
+          </InputGroup>
+
+          <InputGroup>
+            <InputGroupAddon>
+              <InputGroupText>https://</InputGroupText>
+            </InputGroupAddon>
+            <InputGroupInput placeholder="example.com" />
+            <InputGroupAddon align="inline-end">
+              <InputGroupButton>Copy</InputGroupButton>
+            </InputGroupAddon>
+          </InputGroup>
+
+          <InputGroup>
+            <InputGroupTextarea placeholder="Write a message..." />
+            <InputGroupAddon align="block-end" className="justify-end">
+              <InputGroupButton>Send</InputGroupButton>
+            </InputGroupAddon>
+          </InputGroup>
+
+          <InputGroup>
+            <InputGroupInput aria-invalid="true" defaultValue="invalid@" />
+          </InputGroup>
+
+          <InputGroup>
+            <InputGroupInput disabled placeholder="Disabled" />
+          </InputGroup>
+        </div>
+      </section>
+
+      <Separator />
+
       {/* 6. Separator */}
       <section id="separator" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Separator</h2>
@@ -412,6 +496,31 @@ export function App() {
             <Switch size="lg" defaultChecked />
             <Switch size="lg" />
           </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      <section id="toggle-group" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Toggle Group</h2>
+
+        <div className="flex flex-wrap items-start gap-4">
+          <ToggleGroup defaultValue={["day"]}>
+            <ToggleGroupItem value="day">Day</ToggleGroupItem>
+            <ToggleGroupItem value="week">Week</ToggleGroupItem>
+            <ToggleGroupItem value="month">Month</ToggleGroupItem>
+          </ToggleGroup>
+
+          <ToggleGroup variant="outline" multiple defaultValue={["bold", "italic"]}>
+            <ToggleGroupItem value="bold">Bold</ToggleGroupItem>
+            <ToggleGroupItem value="italic">Italic</ToggleGroupItem>
+            <ToggleGroupItem value="underline">Underline</ToggleGroupItem>
+          </ToggleGroup>
+
+          <ToggleGroup disabled defaultValue={["on"]}>
+            <ToggleGroupItem value="on">On</ToggleGroupItem>
+            <ToggleGroupItem value="off">Off</ToggleGroupItem>
+          </ToggleGroup>
         </div>
       </section>
 
@@ -1071,6 +1180,18 @@ export function App() {
           <CommandSeparator />
 
           <CommandGroup heading="Molecules">
+            <CommandItem onSelect={() => navigateTo("button-group")}>
+              <ArrowRightIcon />
+              <span>Button Group</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("input-group")}>
+              <ArrowRightIcon />
+              <span>Input Group</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("toggle-group")}>
+              <ArrowRightIcon />
+              <span>Toggle Group</span>
+            </CommandItem>
             <CommandItem onSelect={() => navigateTo("dropdown-menu")}>
               <ArrowRightIcon />
               <span>Dropdown Menu</span>

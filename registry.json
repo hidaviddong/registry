@@ -446,6 +446,64 @@
                     "type": "registry:ui"
                 }
             ]
+        },
+        {
+            "name": "input-group",
+            "type": "registry:ui",
+            "title": "Input Group",
+            "description": "A composable input container with inline or stacked addons and controls.",
+            "registryDependencies": [
+                "@daviddong/button",
+                "@daviddong/input",
+                "@daviddong/textarea"
+            ],
+            "dependencies": [
+                "class-variance-authority",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/input-group.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "button-group",
+            "type": "registry:ui",
+            "title": "Button Group",
+            "description": "A grouped control for visually connected buttons and supporting content.",
+            "registryDependencies": [
+                "@daviddong/separator"
+            ],
+            "dependencies": [
+                "class-variance-authority",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/button-group.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "toggle-group",
+            "type": "registry:ui",
+            "title": "Toggle Group",
+            "description": "An animated single or multi-select toggle group built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "class-variance-authority",
+                "cn",
+                "motion"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/toggle-group.tsx",
+                    "type": "registry:ui"
+                }
+            ]
         }
     ]
 }
