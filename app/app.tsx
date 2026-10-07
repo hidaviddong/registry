@@ -27,6 +27,12 @@ import {
   ScrollArea,
 } from "~/components/ui/scroll-area.tsx"
 import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "~/components/ui/tabs.tsx"
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -630,6 +636,45 @@ export function App() {
               ))}
             </div>
           </ScrollArea>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 16. Tabs */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Tabs</h2>
+
+        <div className="w-full max-w-sm space-y-3">
+          <Tabs defaultValue="overview">
+            <TabsList>
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="analytics">Analytics</TabsTrigger>
+              <TabsTrigger value="reports">Reports</TabsTrigger>
+              <TabsTrigger value="settings">Settings</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="overview">
+              <p className="text-xs text-muted-foreground leading-relaxed pt-1">
+                Overview panel displaying key application metrics, system health, and active endpoints.
+              </p>
+            </TabsContent>
+            <TabsContent value="analytics">
+              <p className="text-xs text-muted-foreground leading-relaxed pt-1">
+                Real-time traffic throughput, request latency percentiles, and cache hit distribution.
+              </p>
+            </TabsContent>
+            <TabsContent value="reports">
+              <p className="text-xs text-muted-foreground leading-relaxed pt-1">
+                Automated weekly compliance audit logs, security diagnostics, and incident telemetry.
+              </p>
+            </TabsContent>
+            <TabsContent value="settings">
+              <p className="text-xs text-muted-foreground leading-relaxed pt-1">
+                Global rate limiting thresholds, webhook destinations, and TLS certificate renewal policies.
+              </p>
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
 

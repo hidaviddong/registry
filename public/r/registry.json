@@ -143,6 +143,24 @@
                     "type": "registry:ui"
                 }
             ]
+        },
+        {
+            "name": "tabs",
+            "type": "registry:ui",
+            "title": "Tabs",
+            "description": "A refined, tactile Tabs component with sliding spring layout animations built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "class-variance-authority",
+                "cn",
+                "motion"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/tabs.tsx",
+                    "type": "registry:ui"
+                }
+            ]
         }
     ]
 }

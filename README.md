@@ -19,8 +19,8 @@
 - [x] Tooltip
 - [x] Toast
 - [x] Radio Group
-- [ ] Scroll Area
-- [ ] Tabs
+- [x] Scroll Area
+- [x] Tabs
 
 ### Organisms 
 - [ ] Card
