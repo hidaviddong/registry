@@ -197,6 +197,21 @@
                     "type": "registry:ui"
                 }
             ]
+        },
+        {
+            "name": "table",
+            "type": "registry:ui",
+            "title": "Table",
+            "description": "A refined, compact data table with a tactile surface and responsive overflow.",
+            "dependencies": [
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/table.tsx",
+                    "type": "registry:ui"
+                }
+            ]
         }
     ]
 }

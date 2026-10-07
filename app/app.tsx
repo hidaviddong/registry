@@ -66,6 +66,14 @@ import { Skeleton } from "~/components/ui/skeleton.tsx"
 import { Slider } from "~/components/ui/slider.tsx"
 import { Switch } from "~/components/ui/switch.tsx"
 import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/ui/table.tsx"
+import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -784,6 +792,56 @@ export function App() {
             </DrawerFooter>
           </DrawerContent>
         </Drawer>
+      </section>
+
+      <Separator />
+
+      {/* 19. Table */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Table</h2>
+
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Deployment</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Environment</TableHead>
+              <TableHead className="text-right">Duration</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell className="font-medium">registry-web</TableCell>
+              <TableCell className="text-muted-foreground">Ready</TableCell>
+              <TableCell className="text-muted-foreground">
+                Production
+              </TableCell>
+              <TableCell className="text-right font-mono text-xs text-muted-foreground">
+                42s
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="font-medium">registry-api</TableCell>
+              <TableCell className="text-muted-foreground">
+                Building
+              </TableCell>
+              <TableCell className="text-muted-foreground">Preview</TableCell>
+              <TableCell className="text-right font-mono text-xs text-muted-foreground">
+                1m 08s
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="font-medium">documentation</TableCell>
+              <TableCell className="text-muted-foreground">Queued</TableCell>
+              <TableCell className="text-muted-foreground">
+                Production
+              </TableCell>
+              <TableCell className="text-right font-mono text-xs text-muted-foreground">
+                —
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </section>
 
       <Toaster />

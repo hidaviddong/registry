@@ -3,15 +3,25 @@
 import * as React from "react"
 import { cn } from "cn"
 
-function Table({ className, ...props }: React.ComponentProps<"table">) {
+interface TableProps extends React.ComponentProps<"table"> {
+  containerClassName?: string
+}
+
+function Table({ className, containerClassName, ...props }: TableProps) {
   return (
     <div
       data-slot="table-container"
-      className="relative w-full overflow-x-auto"
+      className={cn(
+        "relative w-full overflow-x-auto rounded-xl bg-muted/35 p-1 pt-0",
+        containerClassName
+      )}
     >
       <table
         data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
+        className={cn(
+          "w-full min-w-max border-separate border-spacing-0 caption-bottom text-sm",
+          className
+        )}
         {...props}
       />
     </div>
@@ -22,7 +32,7 @@ function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
     <thead
       data-slot="table-header"
-      className={cn("[&_tr]:border-b", className)}
+      className={cn("text-muted-foreground", className)}
       {...props}
     />
   )
@@ -32,7 +42,13 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   return (
     <tbody
       data-slot="table-body"
-      className={cn("[&_tr:last-child]:border-0", className)}
+      className={cn(
+        "before:table-row before:h-1 before:content-['']",
+        "[&_tr:first-child_td]:border-t [&_tr:first-child_td]:border-border/60",
+        "[&_tr:first-child_td:first-child]:rounded-tl-lg [&_tr:first-child_td:last-child]:rounded-tr-lg",
+        "[&_tr:last-child_td:first-child]:rounded-bl-lg [&_tr:last-child_td:last-child]:rounded-br-lg",
+        className
+      )}
       {...props}
     />
   )
@@ -43,7 +59,10 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
     <tfoot
       data-slot="table-footer"
       className={cn(
-        "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
+        "font-medium before:table-row before:h-1 before:content-['']",
+        "[&_td]:border-y [&_td]:border-border/60 [&_td]:bg-background",
+        "[&_td:first-child]:rounded-l-lg [&_td:first-child]:border-l",
+        "[&_td:last-child]:rounded-r-lg [&_td:last-child]:border-r",
         className
       )}
       {...props}
@@ -56,7 +75,9 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
     <tr
       data-slot="table-row"
       className={cn(
-        "border-b transition-colors hover:bg-muted/50 has-aria-expanded:bg-muted/50 data-[state=selected]:bg-muted",
+        "group/table-row",
+        "[&_td]:transition-colors [&_td]:duration-100 [&_td]:ease-out",
+        "hover:[&_td]:bg-muted/25 has-aria-expanded:[&_td]:bg-muted/30 data-[state=selected]:[&_td]:bg-primary/[0.04]",
         className
       )}
       {...props}
@@ -69,7 +90,8 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
     <th
       data-slot="table-head"
       className={cn(
-        "h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0",
+        "h-10 px-3 text-left align-middle text-xs font-medium whitespace-nowrap text-muted-foreground/80",
+        "first:pl-4 last:pr-4 [&:has([role=checkbox])]:w-10 [&:has([role=checkbox])]:pr-0",
         className
       )}
       {...props}
@@ -82,7 +104,9 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
     <td
       data-slot="table-cell"
       className={cn(
-        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0",
+        "border-b border-border/40 bg-background px-3 py-2.5 align-middle whitespace-nowrap text-foreground/90",
+        "first:border-l first:border-border/60 first:pl-4 last:border-r last:border-border/60 last:pr-4",
+        "[&:has([role=checkbox])]:w-10 [&:has([role=checkbox])]:pr-0",
         className
       )}
       {...props}
@@ -97,7 +121,10 @@ function TableCaption({
   return (
     <caption
       data-slot="table-caption"
-      className={cn("mt-4 text-sm text-muted-foreground", className)}
+      className={cn(
+        "pt-3 text-left text-xs text-muted-foreground",
+        className
+      )}
       {...props}
     />
   )
@@ -113,4 +140,3 @@ export {
   TableCell,
   TableCaption,
 }
-
