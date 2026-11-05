@@ -139,12 +139,88 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "~/components/ui/tooltip.tsx"
+import {
+  Bubble,
+  BubbleContent,
+  BubbleGroup,
+  BubbleReactions,
+} from "~/components/ui/bubble.tsx"
+import {
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageFooter,
+  MessageGroup,
+  MessageHeader,
+} from "~/components/ui/message.tsx"
+import {
+  CodeBlock,
+  CodeBlockActions,
+  CodeBlockContent,
+  CodeBlockCopyButton,
+  CodeBlockFooter,
+  CodeBlockHeader,
+  CodeBlockLine,
+  CodeBlockTitle,
+} from "~/components/ui/code-block.tsx"
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "~/components/ui/collapsible.tsx"
+import { Markdown } from "~/components/ui/markdown.tsx"
+import {
+  MessageScroller,
+  MessageScrollerButton,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerProvider,
+  MessageScrollerViewport,
+} from "~/components/ui/message-scroller.tsx"
+import { useHighlightedCode } from "~/hooks/use-highlighted-code.ts"
 import { Toaster, toast } from "~/components/ui/toast.tsx"
 import { cn } from "cn"
 
 
 
+const SAMPLE_MARKDOWN = [
+  "### Scene Generation Summary",
+  "",
+  "I have prepared the **3-shot sequence** using `seedance-2.0` with consistent character lighting.",
+  "",
+  "| Shot | Camera Motion | Duration | Status |",
+  "| :--- | :--- | :--- | :--- |",
+  "| Shot 01 | Slow dolly in (35mm) | 4.0s | Ready |",
+  "| Shot 02 | Orbital tracking shot | 5.0s | Rendering |",
+  "| Shot 03 | Low-angle crane up | 4.0s | Queued |",
+  "",
+  "```ts",
+  'import { streamText } from "ai"',
+  "",
+  "export async function generateStoryboard(prompt: string) {",
+  "  return streamText({",
+  '    model: "seedance-2.0",',
+  "    prompt,",
+  "  })",
+  "}",
+  "```",
+  "",
+  "> Tip: Mention any node with `@` in the prompt editor to lock visual references.",
+].join("\n")
+
+const SAMPLE_TS_CODE = `import { generateText } from "ai"
+import { openai } from "@ai-sdk/openai"
+
+export async function runDirectorAgent(prompt: string) {
+  const { text } = await generateText({
+    model: openai("gpt-5"),
+    prompt,
+  })
+  return text
+}`
+
 export function App() {
+  const highlightedLines = useHighlightedCode(SAMPLE_TS_CODE, "ts")
   const [loading, setLoading] = useState(false)
   const [commandOpen, setCommandOpen] = useState(false)
 
@@ -1096,7 +1172,315 @@ export function App() {
 
       <Separator />
 
-      {/* 24. Command */}
+      {/* 24. Bubble */}
+      <section id="bubble" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Bubble</h2>
+
+        <div className="max-w-lg space-y-6">
+          <div className="flex flex-col gap-3">
+            <Bubble variant="default">
+              <BubbleContent>
+                Primary tactile bubble with top specular sheen.
+              </BubbleContent>
+            </Bubble>
+
+            <Bubble variant="secondary">
+              <BubbleContent>
+                Secondary surface bubble for incoming messages.
+              </BubbleContent>
+            </Bubble>
+
+            <Bubble variant="tinted">
+              <BubbleContent>
+                Tinted accent bubble for AI highlights and contextual notes.
+              </BubbleContent>
+            </Bubble>
+
+            <Bubble variant="outline">
+              <BubbleContent>
+                Outline elevated card-like bubble with subtle border.
+              </BubbleContent>
+            </Bubble>
+
+            <Bubble variant="muted">
+              <BubbleContent>
+                Muted bubble for system hints or subtle replies.
+              </BubbleContent>
+            </Bubble>
+
+            <Bubble variant="destructive">
+              <BubbleContent>
+                Generation failed: insufficient quota for this model.
+              </BubbleContent>
+            </Bubble>
+
+            <Bubble variant="ghost">
+              <BubbleContent>
+                Ghost bubble for unadorned streaming assistant responses.
+              </BubbleContent>
+            </Bubble>
+          </div>
+
+          <div className="space-y-2 pt-2">
+            <p className="text-xs font-medium text-muted-foreground">
+              Interactive Quick Replies & Reactions
+            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              <Bubble variant="outline">
+                <BubbleContent render={<button type="button" />}>
+                  Generate 16:9 cinematic storyboard
+                </BubbleContent>
+              </Bubble>
+              <Bubble variant="tinted">
+                <BubbleContent render={<button type="button" />}>
+                  Enhance lighting & color grade
+                </BubbleContent>
+              </Bubble>
+            </div>
+
+            <div className="pt-3 pb-4">
+              <Bubble variant="secondary">
+                <BubbleContent>
+                  Here is the final rendered sequence for Scene 04.
+                </BubbleContent>
+                <BubbleReactions side="bottom" align="end">
+                  <span>🔥</span>
+                  <span className="font-medium text-muted-foreground">3</span>
+                </BubbleReactions>
+              </Bubble>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 25. Message & Message Scroller */}
+      <section id="message" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">
+          Message & Message Scroller
+        </h2>
+
+        <div className="max-w-lg overflow-hidden rounded-2xl border border-border/80 bg-background shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08),0_2px_6px_-1px_rgba(0,0,0,0.04)]">
+          <MessageScrollerProvider autoScroll defaultScrollPosition="end">
+            <MessageScroller className="h-96">
+              <MessageScrollerViewport className="p-4">
+                <MessageScrollerContent>
+                  <MessageScrollerItem messageId="msg-1">
+                    <Message align="start">
+                      <MessageAvatar>
+                        <Avatar size="sm">
+                          <AvatarImage
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces"
+                            alt="Sophia"
+                          />
+                          <AvatarFallback>SO</AvatarFallback>
+                          <AvatarBadge status="online" />
+                        </Avatar>
+                      </MessageAvatar>
+                      <MessageContent>
+                        <MessageHeader>
+                          <span className="text-foreground">Sophia</span>
+                          <span>10:24 AM</span>
+                        </MessageHeader>
+                        <BubbleGroup>
+                          <Bubble variant="secondary">
+                            <BubbleContent>
+                              Hey! Have you checked the new tactile surface tokens?
+                            </BubbleContent>
+                          </Bubble>
+                          <Bubble variant="secondary">
+                            <BubbleContent>
+                              We aligned Bubble, Message, and MessageScroller with the rest of the UI kit.
+                            </BubbleContent>
+                            <BubbleReactions>
+                              <span>✨</span>
+                              <span className="font-medium text-muted-foreground">2</span>
+                            </BubbleReactions>
+                          </Bubble>
+                        </BubbleGroup>
+                        <MessageFooter>Seen</MessageFooter>
+                      </MessageContent>
+                    </Message>
+                  </MessageScrollerItem>
+
+                  <MessageScrollerItem messageId="msg-2">
+                    <Message align="end">
+                      <MessageContent>
+                        <MessageHeader>
+                          <span>You</span>
+                          <span>10:25 AM</span>
+                        </MessageHeader>
+                        <BubbleGroup>
+                          <Bubble variant="default" align="end">
+                            <BubbleContent>
+                              Looks super crisp! The top specular highlight and subtle shadows fit right in.
+                            </BubbleContent>
+                          </Bubble>
+                        </BubbleGroup>
+                        <MessageFooter>Delivered</MessageFooter>
+                      </MessageContent>
+                    </Message>
+                  </MessageScrollerItem>
+
+                  <MessageScrollerItem messageId="msg-3">
+                    <Message align="start">
+                      <MessageAvatar>
+                        <Avatar size="sm">
+                          <AvatarFallback>AI</AvatarFallback>
+                        </Avatar>
+                      </MessageAvatar>
+                      <MessageContent>
+                        <MessageHeader>
+                          <span className="text-foreground">DreamMaker Agent</span>
+                          <Badge size="sm" variant="secondary">Assistant</Badge>
+                        </MessageHeader>
+                        <Bubble variant="tinted">
+                          <BubbleContent>
+                            Scroll up inside this viewport to test the floating scroll-to-bottom button and bottom fade mask.
+                          </BubbleContent>
+                        </Bubble>
+                      </MessageContent>
+                    </Message>
+                  </MessageScrollerItem>
+
+                  <MessageScrollerItem messageId="msg-4" scrollAnchor>
+                    <Message align="end">
+                      <MessageContent>
+                        <Bubble variant="default" align="end">
+                          <BubbleContent>
+                            Let&apos;s ship these three components to the registry!
+                          </BubbleContent>
+                        </Bubble>
+                        <MessageFooter>Just now</MessageFooter>
+                      </MessageContent>
+                    </Message>
+                  </MessageScrollerItem>
+                </MessageScrollerContent>
+              </MessageScrollerViewport>
+              <MessageScrollerButton />
+            </MessageScroller>
+          </MessageScrollerProvider>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 26. Collapsible */}
+      <section id="collapsible" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Collapsible</h2>
+
+        <div className="max-w-md">
+          <Collapsible
+            defaultOpen
+            className="overflow-hidden rounded-xl border border-border/80 bg-linear-to-b from-background to-muted/35 shadow-[0_1px_2px_0_rgba(0,0,0,0.04),inset_0_1px_0_0_rgba(255,255,255,0.9)]"
+          >
+            <div className="flex items-center justify-between px-3.5 py-2.5">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-foreground">
+                  Reasoning Process
+                </span>
+                <Badge size="sm" variant="secondary">
+                  3 steps
+                </Badge>
+              </div>
+              <CollapsibleTrigger
+                render={<Button variant="ghost" size="icon-xs" />}
+                aria-label="Toggle reasoning steps"
+              >
+                <CaretDownIcon className="size-3.5 group-data-[panel-open]/collapsible-trigger:rotate-180" />
+              </CollapsibleTrigger>
+            </div>
+
+            <CollapsibleContent>
+              <div className="space-y-2 border-t border-border/60 bg-muted/30 px-3.5 py-3 text-xs leading-relaxed text-muted-foreground">
+                <div className="flex items-center justify-between rounded-lg border border-border/60 bg-background px-2.5 py-1.5 text-foreground">
+                  <span>1. Analyze scene composition & aspect ratio</span>
+                  <span className="font-mono text-[11px] text-muted-foreground">
+                    120ms
+                  </span>
+                </div>
+                <div className="flex items-center justify-between rounded-lg border border-border/60 bg-background px-2.5 py-1.5 text-foreground">
+                  <span>2. Match character reference embeddings</span>
+                  <span className="font-mono text-[11px] text-muted-foreground">
+                    340ms
+                  </span>
+                </div>
+                <div className="flex items-center justify-between rounded-lg border border-border/60 bg-background px-2.5 py-1.5 text-foreground">
+                  <span>3. Synthesize camera motion keyframes</span>
+                  <span className="font-mono text-[11px] text-muted-foreground">
+                    210ms
+                  </span>
+                </div>
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 27. Code Block */}
+      <section id="code-block" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Code Block</h2>
+
+        <div className="max-w-lg space-y-5">
+          <CodeBlock>
+            <CodeBlockHeader>
+              <CodeBlockTitle>agent.ts</CodeBlockTitle>
+              <CodeBlockActions>
+                <CodeBlockCopyButton value={SAMPLE_TS_CODE} />
+              </CodeBlockActions>
+            </CodeBlockHeader>
+            <CodeBlockContent lineNumbers>
+              {highlightedLines.map((line, idx) => (
+                <CodeBlockLine
+                  key={idx}
+                  variant={
+                    idx === 5
+                      ? "added"
+                      : idx === 4
+                        ? "removed"
+                        : idx === 1
+                          ? "highlighted"
+                          : "default"
+                  }
+                >
+                  {line}
+                </CodeBlockLine>
+              ))}
+            </CodeBlockContent>
+            <CodeBlockFooter>
+              <span>TypeScript</span>
+              <span className="ms-auto font-mono">UTF-8</span>
+            </CodeBlockFooter>
+          </CodeBlock>
+
+          <CodeBlock size="sm">
+            <CodeBlockActions>
+              <CodeBlockCopyButton value="pnpm dlx shadcn@latest add @daviddong/code-block" />
+            </CodeBlockActions>
+            <CodeBlockContent>
+              pnpm dlx shadcn@latest add @daviddong/code-block
+            </CodeBlockContent>
+          </CodeBlock>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 28. Markdown (Streamdown + Table + CodeBlock) */}
+      <section id="markdown" className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Markdown</h2>
+
+        <div className="max-w-lg rounded-2xl border border-border/80 bg-background p-5 shadow-[0_1px_2px_0_rgba(0,0,0,0.04)]">
+          <Markdown>{SAMPLE_MARKDOWN}</Markdown>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 29. Command */}
       <section id="command" className="space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">Command</h2>
 
@@ -1227,6 +1611,26 @@ export function App() {
             <CommandItem onSelect={() => navigateTo("command")}>
               <ArrowRightIcon />
               <span>Command</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("bubble")}>
+              <ArrowRightIcon />
+              <span>Bubble</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("message")}>
+              <ArrowRightIcon />
+              <span>Message</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("collapsible")}>
+              <ArrowRightIcon />
+              <span>Collapsible</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("code-block")}>
+              <ArrowRightIcon />
+              <span>Code Block</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo("markdown")}>
+              <ArrowRightIcon />
+              <span>Markdown</span>
             </CommandItem>
           </CommandGroup>
 

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "message",
+  "title": "Message",
+  "description": "Composable chat message layout primitives for avatars, headers, footers, and bubble groups.",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "components/ui/message.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"cn\"\n\nfunction MessageGroup({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"message-group\"\n      className={cn(\"flex min-w-0 flex-col gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction Message({\n  className,\n  align = \"start\",\n  ...props\n}: React.ComponentProps<\"div\"> & { align?: \"start\" | \"end\" }) {\n  return (\n    <div\n      data-slot=\"message\"\n      data-align={align}\n      className={cn(\n        \"group/message relative flex w-full min-w-0 gap-2.5 text-sm data-[align=end]:flex-row-reverse\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction MessageAvatar({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"message-avatar\"\n      className={cn(\n        \"relative flex size-fit shrink-0 items-center justify-center self-end rounded-full select-none\",\n        \"group-has-data-[slot=message-footer]/message:-translate-y-6\",\n        \"[&>img]:size-8 [&>img]:rounded-full [&>img]:object-cover [&>img]:ring-1 [&>img]:ring-border/80\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction MessageContent({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"message-content\"\n      className={cn(\n        \"flex w-full min-w-0 flex-col gap-1.5 wrap-break-word group-data-[align=end]/message:*:data-slot:self-end\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction MessageHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"message-header\"\n      className={cn(\n        \"flex max-w-full min-w-0 items-center gap-1.5 px-3 text-xs font-medium text-muted-foreground select-none\",\n        \"group-has-data-[variant=ghost]/message:px-0 group-data-[align=end]/message:justify-end\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction MessageFooter({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"message-footer\"\n      className={cn(\n        \"flex max-w-full min-w-0 items-center gap-1.5 px-3 text-[0.75rem] text-muted-foreground/80 select-none\",\n        \"group-has-data-[variant=ghost]/message:px-0 group-data-[align=end]/message:justify-end\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  MessageGroup,\n  Message,\n  MessageAvatar,\n  MessageContent,\n  MessageFooter,\n  MessageHeader,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

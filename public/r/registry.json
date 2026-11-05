@@ -504,6 +504,123 @@
                     "type": "registry:ui"
                 }
             ]
+        },
+        {
+            "name": "bubble",
+            "type": "registry:ui",
+            "title": "Bubble",
+            "description": "A tactile chat bubble component with reactions and interactive surface variants built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "class-variance-authority",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/bubble.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "message",
+            "type": "registry:ui",
+            "title": "Message",
+            "description": "Composable chat message layout primitives for avatars, headers, footers, and bubble groups.",
+            "dependencies": [
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/message.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "message-scroller",
+            "type": "registry:ui",
+            "title": "Message Scroller",
+            "description": "An auto-scrolling chat viewport with scroll-to-bottom indicator built on @shadcn/react.",
+            "registryDependencies": [
+                "@daviddong/button"
+            ],
+            "dependencies": [
+                "@phosphor-icons/react",
+                "@shadcn/react",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/message-scroller.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "collapsible",
+            "type": "registry:ui",
+            "title": "Collapsible",
+            "description": "A smooth height-animated collapsible panel built with Base UI.",
+            "dependencies": [
+                "@base-ui/react",
+                "cn"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/collapsible.tsx",
+                    "type": "registry:ui"
+                }
+            ]
+        },
+        {
+            "name": "code-block",
+            "type": "registry:ui",
+            "title": "Code Block",
+            "description": "A tactile syntax-highlighted code block with line numbers, diff states, and copy action.",
+            "registryDependencies": [
+                "@daviddong/button"
+            ],
+            "dependencies": [
+                "@phosphor-icons/react",
+                "class-variance-authority",
+                "cn",
+                "shiki"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/code-block.tsx",
+                    "type": "registry:ui"
+                },
+                {
+                    "path": "hooks/use-highlighted-code.ts",
+                    "type": "registry:hook"
+                },
+                {
+                    "path": "lib/highlighter.tsx",
+                    "type": "registry:lib"
+                }
+            ]
+        },
+        {
+            "name": "markdown",
+            "type": "registry:ui",
+            "title": "Markdown",
+            "description": "Streaming AI markdown renderer powered by Streamdown, wired to tactile CodeBlock and Table components.",
+            "registryDependencies": [
+                "@daviddong/code-block",
+                "@daviddong/table"
+            ],
+            "dependencies": [
+                "cn",
+                "streamdown"
+            ],
+            "files": [
+                {
+                    "path": "components/ui/markdown.tsx",
+                    "type": "registry:ui"
+                }
+            ]
         }
     ]
 }

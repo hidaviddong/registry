@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "markdown",
+  "title": "Markdown",
+  "description": "Streaming AI markdown renderer powered by Streamdown, wired to tactile CodeBlock and Table components.",
+  "dependencies": [
+    "cn",
+    "streamdown"
+  ],
+  "registryDependencies": [
+    "@daviddong/code-block",
+    "@daviddong/table"
+  ],
+  "files": [
+    {
+      "path": "components/ui/markdown.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport {\n  Streamdown,\n  useIsCodeFenceIncomplete,\n  type Components,\n  type ExtraProps,\n  type StreamdownProps,\n} from \"streamdown\"\n\nimport { useHighlightedCode } from \"../../hooks/use-highlighted-code\"\nimport {\n  CodeBlock,\n  CodeBlockActions,\n  CodeBlockContent,\n  CodeBlockCopyButton,\n  CodeBlockHeader,\n  CodeBlockLine,\n  CodeBlockTitle,\n} from \"./code-block\"\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"./table\"\n\nfunction MarkdownCode({\n  node: _node,\n  className,\n  children,\n  ...props\n}: React.ComponentProps<\"code\"> & ExtraProps) {\n  const incomplete = useIsCodeFenceIncomplete()\n  const isBlock = \"data-block\" in props\n  const code = typeof children === \"string\" ? children.replace(/\\n$/, \"\") : \"\"\n  const language = /language-(\\S+)/.exec(className ?? \"\")?.[1] ?? \"\"\n  const lines = useHighlightedCode(isBlock ? code : \"\", language)\n\n  if (!isBlock) {\n    return (\n      <code className=\"rounded-md border border-border/70 bg-muted/75 px-1.5 py-0.5 font-mono text-[0.85em]\">\n        {children}\n      </code>\n    )\n  }\n\n  return (\n    <CodeBlock className=\"my-3\">\n      <CodeBlockHeader>\n        <CodeBlockTitle>{language || \"text\"}</CodeBlockTitle>\n        <CodeBlockActions>\n          <CodeBlockCopyButton value={code} disabled={incomplete} />\n        </CodeBlockActions>\n      </CodeBlockHeader>\n      <CodeBlockContent lineNumbers>\n        {lines.map((line, index) => (\n          <CodeBlockLine key={index}>{line}</CodeBlockLine>\n        ))}\n      </CodeBlockContent>\n    </CodeBlock>\n  )\n}\n\nconst markdownComponents: Components = {\n  code: MarkdownCode,\n  table: ({ node: _node, ...props }) => <Table containerClassName=\"my-3\" {...props} />,\n  thead: ({ node: _node, ...props }) => <TableHeader {...props} />,\n  tbody: ({ node: _node, ...props }) => <TableBody {...props} />,\n  tr: ({ node: _node, ...props }) => <TableRow {...props} />,\n  th: ({ node: _node, ...props }) => <TableHead {...props} />,\n  td: ({ node: _node, ...props }) => <TableCell {...props} />,\n}\n\nfunction Markdown({\n  components,\n  controls = false,\n  ...props\n}: StreamdownProps) {\n  return (\n    <Streamdown\n      data-slot=\"markdown\"\n      controls={controls}\n      components={components ? { ...markdownComponents, ...components } : markdownComponents}\n      {...props}\n    />\n  )\n}\n\nexport { Markdown, markdownComponents }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "title": "Collapsible",
+  "description": "A smooth height-animated collapsible panel built with Base UI.",
+  "dependencies": [
+    "@base-ui/react",
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "components/ui/collapsible.tsx",
+      "content": "\"use client\"\n\nimport { Collapsible as CollapsiblePrimitive } from \"@base-ui/react/collapsible\"\nimport { cn } from \"cn\"\n\nfunction Collapsible({\n  className,\n  ...props\n}: CollapsiblePrimitive.Root.Props) {\n  return (\n    <CollapsiblePrimitive.Root\n      data-slot=\"collapsible\"\n      className={cn(\"group/collapsible flex flex-col\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction CollapsibleTrigger({\n  className,\n  ...props\n}: CollapsiblePrimitive.Trigger.Props) {\n  return (\n    <CollapsiblePrimitive.Trigger\n      data-slot=\"collapsible-trigger\"\n      className={cn(\n        \"group/collapsible-trigger inline-flex items-center gap-2 outline-none select-none cursor-pointer\",\n        \"transition-colors duration-150 ease-out\",\n        \"focus-visible:ring-2 focus-visible:ring-ring/50\",\n        \"disabled:pointer-events-none disabled:opacity-50\",\n        \"[&_svg]:shrink-0 [&_svg]:transition-transform [&_svg]:duration-200 [&_svg]:ease-out\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction CollapsibleContent({\n  className,\n  ...props\n}: CollapsiblePrimitive.Panel.Props) {\n  return (\n    <CollapsiblePrimitive.Panel\n      data-slot=\"collapsible-content\"\n      className={cn(\n        \"h-(--collapsible-panel-height) overflow-hidden text-sm\",\n        \"transition-[height,opacity] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]\",\n        \"data-starting-style:h-0 data-starting-style:opacity-0\",\n        \"data-ending-style:h-0 data-ending-style:opacity-0\",\n        \"[&[hidden]:not([hidden='until-found'])]:hidden\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Collapsible, CollapsibleTrigger, CollapsibleContent }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
